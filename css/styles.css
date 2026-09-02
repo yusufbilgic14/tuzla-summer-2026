@@ -143,13 +143,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
   max-width: var(--col); margin: 0 auto; padding: 0 var(--sp-xl);
   height: 72px; display: flex; align-items: center; gap: var(--sp-xl);
 }
-.wordmark {
-  font-family: var(--font-display); font-weight: 800; font-size: 21px;
-  color: var(--ink); text-decoration: none; white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 7px;
+.nav-brand {
+  display: inline-flex; align-items: center; gap: 13px;
+  text-decoration: none; flex-shrink: 0;
+}
+.brand-aiesec { height: 26px; width: auto; display: block; }
+.brand-tuzla {
+  height: 44px; width: auto; display: block;
+  background: #fff; border-radius: 12px; padding: 4px;
+  box-shadow: var(--sh-sm);
 }
 .wm-dots { display: inline-flex; gap: 4px; }
-.wm-dots i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.wm-dots i { width: 7px; height: 7px; border-radius: 50%; display: block; }
 .wm-dots i:nth-child(1) { background: var(--sdg5); }
 .wm-dots i:nth-child(2) { background: var(--yellow); }
 .wm-dots i:nth-child(3) { background: var(--blue); }
@@ -620,6 +625,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 }
 .partner-ctas { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
 
+.partner-logos { display: flex; align-items: center; gap: 16px; margin-top: 30px; }
+.pl-aiesec { height: 20px; width: auto; display: block; }
+.pl-x { color: rgba(255, 255, 255, 0.5); font-weight: 800; font-size: 15px; }
+.pl-tuzla {
+  height: 48px; width: auto; display: block;
+  background: #fff; border-radius: 11px; padding: 4px;
+}
+
 .partner-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-content: start; }
 .benefit-card {
   background: var(--white); color: var(--ink-soft); border-radius: var(--r-md);
@@ -636,6 +649,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 
 .footer { background: var(--navy-band); color: rgba(255, 255, 255, 0.62); padding: 0 0 44px; }
 .footer .container { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 44px; }
+.footer-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 42px; flex-wrap: wrap; margin-bottom: 40px;
+}
+.fl-aiesec { height: 26px; width: auto; display: block; opacity: .95; }
+.fl-asia { height: 62px; width: auto; display: block; }
+.fl-tuzla {
+  height: 64px; width: auto; display: block;
+  background: #fff; border-radius: 14px; padding: 6px;
+}
 .footer-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 34px; }
 .footer-links a {
   display: block; text-align: center; padding: 14px 12px;
@@ -684,12 +707,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .nav .btn-primary { display: none; }
   .nav-toggle { display: flex; margin-left: 10px; }
   .nav .lang-toggle { margin-left: auto; }
-  .nav .btn-primary { display: none; }
+  .nav-inner { gap: var(--sp-lg); }
+  .brand-aiesec { height: 21px; }
+  .brand-tuzla { height: 36px; }
+  .nav-brand { gap: 10px; }
+  .project-cols { grid-template-columns: 1fr; }
   .photo-strip { grid-template-columns: 1fr; }
   .sdg-tiles { grid-template-columns: 1fr; }
-  .marquee-label { padding: 13px 18px 13px 20px; font-size: 12.5px; }
 }
 
 @media (max-width: 640px) {
@@ -703,6 +730,13 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
   .footer-links { grid-template-columns: 1fr; }
   .stat-card .num { font-size: 46px; }
   .hero-stickers { padding-bottom: 44px; }
+  .brand-aiesec { height: 19px; }
+  .brand-tuzla { height: 33px; padding: 3px; border-radius: 10px; }
+  .nav-brand { gap: 10px; }
+  .fl-aiesec { height: 20px; }
+  .fl-asia { height: 48px; }
+  .fl-tuzla { height: 50px; }
+  .footer-logos { gap: 26px; }
   .sticker { min-width: 100%; flex-direction: row; align-items: center; gap: 14px; }
   .sticker .s-sdg { margin-bottom: 0; }
   .sticker .s-num { font-size: 34px; }
