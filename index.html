@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tuzla Summer 2026 — AIESEC in Istanbul Asia × Tuzla Municipality</title>
   <meta name="description" content="The field report of AIESEC in Istanbul Asia's 2026 summer volunteer program with Tuzla Municipality: 50+ volunteers from 11+ countries, three projects, three SDGs, one summer." />
+  <meta name="theme-color" content="#037EF3" />
   <meta property="og:title" content="Tuzla Summer 2026 — AIESEC in Istanbul Asia × Tuzla Municipality" />
   <meta property="og:description" content="50+ volunteers. 11 countries. 3 projects. 1 summer. The field report." />
   <meta property="og:type" content="website" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23201d1d'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='bold' fill='%23fdfcfc' text-anchor='middle'%3E26%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23037EF3'/%3E%3Ccircle cx='22' cy='26' r='7' fill='%23FF3A21'/%3E%3Ccircle cx='42' cy='26' r='7' fill='%23FFC945'/%3E%3Ccircle cx='32' cy='42' r='7' fill='%23ffffff'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -19,7 +20,7 @@
 
   <header class="nav">
     <div class="nav-inner">
-      <a class="wordmark" href="#top"><span class="block">▚</span> tuzla_summer<span class="thin">_26</span></a>
+      <a class="wordmark" href="#top">Tuzla<span class="wm-dots"><i></i><i></i><i></i></span>Summer ’26</a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#projects" data-i18n="nav.projects">Projects</a>
         <a href="#sdg" data-i18n="nav.sdg">SDGs</a>
@@ -32,7 +33,9 @@
         <button type="button" data-lang="tr" aria-pressed="false">TR</button>
       </div>
       <a class="btn btn-primary" href="#partner" data-i18n="nav.cta">Partner 2027</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" data-i18n="nav.menu">Menu</button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
     <div class="nav-drawer" id="nav-drawer">
       <a href="#projects" data-i18n="nav.projects">Projects</a>
@@ -47,126 +50,132 @@
   <main id="main">
 
     <section class="hero" id="top">
-      <div class="container-wide">
-        <div class="hero-top">
-          <span class="badge-news" data-i18n="hero.badge">AIESEC in Istanbul Asia × Tuzla Municipality</span>
-          <h1 class="display-xl hero-title" data-i18n="hero.title">50+ volunteers. 11 countries. 3 projects. 1 summer.</h1>
-          <p class="body-md hero-sub" data-i18n="hero.sub"></p>
+      <div class="hero-deco" aria-hidden="true">
+        <span class="blob blob-a"></span>
+        <span class="blob blob-b"></span>
+        <span class="blob blob-c"></span>
+        <svg class="sparkle sp-a" viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        <svg class="sparkle sp-b" viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        <svg class="sparkle sp-c" viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+      </div>
+      <div class="container hero-inner">
+        <span class="hero-badge reveal">
+          <span class="hb-dots" aria-hidden="true"><i style="background:#FF3A21"></i><i style="background:#FFC945"></i><i style="background:#19486A"></i></span>
+          <span data-i18n="hero.badge">AIESEC in Istanbul Asia × Tuzla Municipality</span>
+        </span>
+        <h1 class="hero-title reveal">
+          <span data-i18n="hero.title.a">50+ volunteers. 11 countries. 3 projects.</span>
+          <span class="hl"><span data-i18n="hero.title.b">1 summer.</span><svg class="hl-swash" viewBox="0 0 220 22" preserveAspectRatio="none" aria-hidden="true"><path d="M4 15 C 50 5, 90 20, 130 10 S 200 6, 216 12" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></span>
+        </h1>
+        <p class="hero-sub reveal" data-i18n="hero.sub"></p>
+        <div class="hero-ctas reveal">
+          <a class="btn btn-primary btn-lg" href="#figures" data-i18n="hero.cta1">See the report ↓</a>
+          <a class="btn btn-ghost btn-lg" href="#partner" data-i18n="nav.cta">Partner 2027</a>
         </div>
-
-        <div class="hero-frame">
-          <div class="tui" role="img" aria-label="Terminal typing the impact report of Tuzla Summer 2026">
-            <pre class="tui-wordmark" aria-hidden="true">████████╗ ██╗   ██╗ ███████╗ ██╗       █████╗
-╚══██╔══╝ ██║   ██║ ╚══███╔╝ ██║      ██╔══██╗
-   ██║    ██║   ██║   ███╔╝  ██║      ███████║
-   ██║    ██║   ██║  ███╔╝   ██║      ██╔══██║
-   ██║    ╚██████╔╝ ███████╗ ███████╗ ██║  ██║
-
-            summer_2026 — impact_report</pre>
-            <div class="tui-term" id="terminal" aria-live="off"></div>
-            <div class="tui-hints">
-              <span class="hint"><span class="key">click</span> <span data-i18n="hero.runcmd">run a project log</span></span>
-              <span class="hint"><span class="key">fig</span> <span>50+ volunteers · 11+ countries · 3 projects</span></span>
-            </div>
-            <div class="tui-cmds" id="tui-cmds">
-              <button class="tui-cmd" type="button" data-script="main" aria-pressed="true">[run] summer2026 --report</button>
-              <button class="tui-cmd" type="button" data-script="ryv" aria-pressed="false">[run] raise_your_voice</button>
-              <button class="tui-cmd" type="button" data-script="gl" aria-pressed="false">[run] green_leaders</button>
-              <button class="tui-cmd" type="button" data-script="mmw" aria-pressed="false">[run] myself_my_world</button>
-            </div>
-          </div>
+        <div class="hero-stickers reveal" id="hero-stickers"></div>
+      </div>
+      <div class="marquee" id="marquee">
+        <span class="marquee-label" data-i18n="hero.marquee">11+ countries came to Tuzla</span>
+        <div class="marquee-clip">
+          <div class="marquee-track" id="marquee-track"></div>
         </div>
       </div>
     </section>
 
-    <section class="section section-rule" id="figures">
+    <section class="section" id="figures">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="figures.label">The summer in numbers</span>
-          <span class="rule"></span>
+          <span class="overline ov-blue" data-i18n="ov.figures">By the numbers</span>
+          <h2 class="section-title" data-i18n="figures.label">The summer in numbers</h2>
         </div>
         <div class="figures-grid reveal" id="figures-grid"></div>
       </div>
     </section>
 
-    <section class="section section-rule" id="story">
+    <section class="section section-tint" id="story">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="story.label">What is this?</span>
-          <span class="rule"></span>
+          <span class="overline ov-teal" data-i18n="ov.story">About the program</span>
+          <h2 class="section-title" data-i18n="story.label">What is this?</h2>
         </div>
-        <p class="body-md reveal" data-i18n="story.p1" style="max-width:68ch"></p>
-        <p class="body-md reveal" data-i18n="story.p2" style="max-width:68ch; margin-top:16px; margin-bottom:32px"></p>
-        <div class="list-rows reveal">
-          <div class="list-row">
-            <span class="marker">[+]</span><span class="lr-title" data-i18n="story.1.t">Who</span>
-            <span class="lr-desc" data-i18n="story.1.d"></span>
+        <div class="story-copy">
+          <p class="lead reveal" data-i18n="story.p1"></p>
+          <p class="reveal" data-i18n="story.p2"></p>
+        </div>
+        <div class="story-grid reveal">
+          <div class="story-card sc-blue">
+            <span class="sc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="10" r="2.6"/><path d="M3.5 19c.6-3.2 2.9-5 5.5-5s4.9 1.8 5.5 5M13.5 19c.4-2.3 1.7-3.8 3.4-3.8 1.6 0 3 1.4 3.5 3.8"/></svg></span>
+            <h3 data-i18n="story.1.t">Who</h3>
+            <p data-i18n="story.1.d"></p>
           </div>
-          <div class="list-row">
-            <span class="marker">[+]</span><span class="lr-title" data-i18n="story.2.t">Where</span>
-            <span class="lr-desc" data-i18n="story.2.d"></span>
+          <div class="story-card sc-yellow">
+            <span class="sc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21c4-3.5 7-6.8 7-10.5A7 7 0 0 0 5 10.5C5 14.2 8 17.5 12 21z"/><circle cx="12" cy="10.5" r="2.6"/></svg></span>
+            <h3 data-i18n="story.2.t">Where</h3>
+            <p data-i18n="story.2.d"></p>
           </div>
-          <div class="list-row">
-            <span class="marker">[+]</span><span class="lr-title" data-i18n="story.3.t">What</span>
-            <span class="lr-desc" data-i18n="story.3.d"></span>
+          <div class="story-card sc-green">
+            <span class="sc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9l4-3v13M14 19V6l4 2v11"/></svg></span>
+            <h3 data-i18n="story.3.t">What</h3>
+            <p data-i18n="story.3.d"></p>
           </div>
-          <div class="list-row">
-            <span class="marker">[+]</span><span class="lr-title" data-i18n="story.4.t">With whom</span>
-            <span class="lr-desc" data-i18n="story.4.d"></span>
+          <div class="story-card sc-coral">
+            <span class="sc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.5A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.5C19 15.4 12 20 12 20z"/></svg></span>
+            <h3 data-i18n="story.4.t">With whom</h3>
+            <p data-i18n="story.4.d"></p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-rule" id="projects">
+    <section class="section" id="projects">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="projects.label">The three projects</span>
-          <span class="rule"></span>
+          <span class="overline ov-coral" data-i18n="ov.projects">The projects</span>
+          <h2 class="section-title" data-i18n="projects.label">The three projects</h2>
         </div>
       </div>
       <div id="projects-list"></div>
     </section>
 
-    <section class="section section-rule" id="sdg">
+    <section class="section section-tint" id="sdg">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="sdg.label">The goals behind the work</span>
-          <span class="rule"></span>
-          <p class="body-md section-intro" data-i18n="sdg.intro"></p>
+          <span class="overline ov-navy" data-i18n="ov.sdg">UN Sustainable Development Goals</span>
+          <h2 class="section-title" data-i18n="sdg.label">The goals behind the work</h2>
+          <p class="section-intro" data-i18n="sdg.intro"></p>
         </div>
         <div class="sdg-tiles reveal" id="sdg-tiles" role="group" aria-label="Select a Sustainable Development Goal"></div>
         <div class="sdg-detail reveal" id="sdg-detail"></div>
       </div>
     </section>
 
-    <section class="section section-rule" id="gallery">
+    <section class="section" id="gallery">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="gallery.label">Field archive</span>
-          <span class="rule"></span>
-          <p class="body-md section-intro" data-i18n="gallery.intro"></p>
+          <span class="overline ov-yellow" data-i18n="ov.gallery">Field archive</span>
+          <h2 class="section-title" data-i18n="gallery.label">Photos &amp; videos</h2>
+          <p class="section-intro" data-i18n="gallery.intro"></p>
         </div>
         <div class="gallery-chips reveal" id="gallery-chips"></div>
         <div class="gallery-grid reveal" id="gallery-grid"></div>
       </div>
     </section>
 
-    <section class="section section-rule timeline" id="timeline">
+    <section class="section section-tint timeline" id="timeline">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="timeline.label">How the summer unfolded</span>
-          <span class="rule"></span>
+          <span class="overline ov-green" data-i18n="ov.timeline">The journey</span>
+          <h2 class="section-title" data-i18n="timeline.label">How the summer unfolded</h2>
         </div>
-        <div class="list-rows reveal" id="timeline-list"></div>
+        <div class="tl-list reveal" id="timeline-list"></div>
       </div>
     </section>
 
-    <section class="section section-rule" id="voices">
+    <section class="section" id="voices">
       <div class="container">
         <div class="section-head reveal">
-          <span class="heading-md" data-i18n="voices.label">Voices from the summer</span>
-          <span class="rule"></span>
+          <span class="overline ov-coral" data-i18n="ov.voices">Testimonials</span>
+          <h2 class="section-title" data-i18n="voices.label">Voices from the summer</h2>
         </div>
         <div class="voices-grid reveal" id="voices-list"></div>
       </div>
@@ -174,34 +183,34 @@
 
     <section class="partner" id="partner">
       <div class="container">
-        <span class="badge-news" data-i18n="partner.badge">Proposal</span>
-        <h2 class="display-xl" data-i18n="partner.title" style="margin-top:16px">Let's run it back in 2027 — bigger.</h2>
+        <span class="overline ov-yellow chip-solid reveal" data-i18n="partner.badge">Proposal 2027</span>
+        <h2 class="partner-title reveal"><span data-i18n="partner.title">Let's run it back in 2027</span> <span class="pmark"><span data-i18n="partner.title.hl">— bigger.</span></span></h2>
         <div class="partner-cols">
-          <div>
+          <div class="partner-copy reveal">
             <p data-i18n="partner.p1"></p>
             <p class="p2" data-i18n="partner.p2"></p>
-            <div class="partner-cmd"><span data-i18n="partner.cmd">$ summer2027 --partners=tuzla_belediyesi --scale=2x</span><span class="k-success"> ▮</span></div>
+            <div class="stamp" aria-hidden="true">2027</div>
             <div class="partner-ctas">
-              <a class="btn btn-primary" id="partner-mail" href="mailto:ADD-REAL-EMAIL@example.org" data-i18n="partner.cta">Propose 2027 →</a>
-              <a class="btn btn-secondary" href="#top" data-i18n="partner.cta2">Re-see 2026 ↓</a>
+              <a class="btn btn-yellow btn-lg" id="partner-mail" href="mailto:ADD-REAL-EMAIL@example.org" data-i18n="partner.cta">Propose 2027 →</a>
+              <a class="btn btn-ghost-light btn-lg" href="#top" data-i18n="partner.cta2">Re-see 2026 ↓</a>
             </div>
           </div>
-          <div class="partner-list">
-            <div class="list-row">
-              <span class="marker">[+]</span><span class="lr-title" data-i18n="partner.1.t">More reach</span>
-              <span class="lr-desc" data-i18n="partner.1.d"></span>
+          <div class="partner-benefits reveal">
+            <div class="benefit-card b-blue">
+              <h3 data-i18n="partner.1.t">More reach</h3>
+              <p data-i18n="partner.1.d"></p>
             </div>
-            <div class="list-row">
-              <span class="marker">[+]</span><span class="lr-title" data-i18n="partner.2.t">Local alignment</span>
-              <span class="lr-desc" data-i18n="partner.2.d"></span>
+            <div class="benefit-card b-green">
+              <h3 data-i18n="partner.2.t">Local alignment</h3>
+              <p data-i18n="partner.2.d"></p>
             </div>
-            <div class="list-row">
-              <span class="marker">[+]</span><span class="lr-title" data-i18n="partner.3.t">A full archive</span>
-              <span class="lr-desc" data-i18n="partner.3.d"></span>
+            <div class="benefit-card b-yellow">
+              <h3 data-i18n="partner.3.t">A full archive</h3>
+              <p data-i18n="partner.3.d"></p>
             </div>
-            <div class="list-row">
-              <span class="marker">[+]</span><span class="lr-title" data-i18n="partner.4.t">Proven delivery</span>
-              <span class="lr-desc" data-i18n="partner.4.d"></span>
+            <div class="benefit-card b-coral">
+              <h3 data-i18n="partner.4.t">Proven delivery</h3>
+              <p data-i18n="partner.4.d"></p>
             </div>
           </div>
         </div>
@@ -222,7 +231,7 @@
         <span data-i18n="footer.credit"></span>
         <span data-i18n="footer.tagline"></span>
       </div>
-      <div class="footer-base" style="margin-top:8px">
+      <div class="footer-base">
         <span data-i18n="footer.built"></span>
         <span id="ig-handle"></span>
       </div>
@@ -238,8 +247,8 @@
       </div>
     </div>
     <button class="lb-btn lb-close" id="lb-close" data-i18n="lightbox.close">close</button>
-    <button class="lb-btn lb-prev" id="lb-prev" data-i18n="lightbox.prev">[‹]</button>
-    <button class="lb-btn lb-next" id="lb-next" data-i18n="lightbox.next">[›]</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="previous figure">[‹]</button>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="next figure">[›]</button>
   </div>
 
   <script src="js/content.js"></script>

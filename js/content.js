@@ -29,9 +29,19 @@ const I18N = {
     "nav.menu": "Menu",
 
     "hero.badge": "AIESEC in Istanbul Asia × Tuzla Municipality",
-    "hero.title": "50+ volunteers. 11 countries. 3 projects. 1 summer.",
+    "hero.title.a": "50+ volunteers. 11 countries. 3 projects.",
+    "hero.title.b": "1 summer.",
     "hero.sub": "The field report of the 2026 summer volunteer program in Tuzla — delivered on the ground by young people, for the community, across gender equality, climate action and global partnership.",
-    "hero.runcmd": "run a project log",
+    "hero.cta1": "See the report ↓",
+    "hero.marquee": "11+ countries came to Tuzla",
+
+    "ov.figures": "By the numbers",
+    "ov.story": "About the program",
+    "ov.projects": "The projects",
+    "ov.sdg": "UN Sustainable Development Goals",
+    "ov.gallery": "Field archive",
+    "ov.timeline": "The journey",
+    "ov.voices": "Testimonials",
 
     "figures.label": "The summer in numbers",
 
@@ -58,11 +68,12 @@ const I18N = {
     "sdg.targets": "Official UN targets addressed",
     "sdg.official": "UN goal",
 
-    "gallery.label": "Field archive",
+    "gallery.label": "Photos & videos",
     "gallery.intro": "Photos and videos from the six weeks. Filter by project, click any figure to enlarge.",
-    "gallery.filter.all": "[all]",
+    "gallery.filter.all": "All",
     "gallery.filter.hint": "showing",
     "gallery.clear": "clear ×",
+    "gallery.tag.community": "Community",
     "gallery.pending": "[ photo pending ]",
     "gallery.pendingVideo": "[ video pending ]",
     "gallery.empty": "[ no figures in this set yet ]",
@@ -71,8 +82,9 @@ const I18N = {
 
     "voices.label": "Voices from the summer",
 
-    "partner.badge": "Proposal",
-    "partner.title": "Let's run it back in 2027 — bigger.",
+    "partner.badge": "Proposal 2027",
+    "partner.title": "Let's run it back in 2027",
+    "partner.title.hl": "— bigger.",
     "partner.p1": "Tuzla ran a global program this summer. In six weeks, 50+ volunteers from 11+ countries delivered workshops across the district — on gender equality, on climate, on seeing the world from Tuzla's shore.",
     "partner.p2": "The Municipality brought the venues, the trust and the local knowledge. AIESEC brought the people, the training and the international network. It worked. For summer 2027 we propose the same framework, at twice the scale.",
     "partner.1.t": "More reach",
@@ -87,7 +99,7 @@ const I18N = {
     "partner.cta": "Propose 2027 →",
     "partner.cta2": "Re-see 2026 ↓",
 
-    "footer.tagline": "A field report, not a brochure. Typeset entirely in monospace.",
+    "footer.tagline": "A field report, not a brochure.",
     "footer.credit": "© 2026 AIESEC in Istanbul Asia × Tuzla Municipality — a not-for-profit community program.",
     "footer.built": "[x] designed, written and shipped as one summer's record",
 
@@ -111,9 +123,19 @@ const I18N = {
     "nav.menu": "Menü",
 
     "hero.badge": "AIESEC in Istanbul Asya × Tuzla Belediyesi",
-    "hero.title": "50+ gönüllü. 11 ülke. 3 proje. 1 yaz.",
+    "hero.title.a": "50+ gönüllü. 11 ülke. 3 proje.",
+    "hero.title.b": "1 yaz.",
     "hero.sub": "Tuzla'daki 2026 yaz gönüllü programının saha raporu — toplumsal cinsiyet eşitliği, iklim eylemi ve küresel ortaklık alanlarında, gençler tarafından halk için hayata geçirildi.",
-    "hero.runcmd": "bir proje kaydı çalıştır",
+    "hero.cta1": "Raporu gör ↓",
+    "hero.marquee": "11+ ülke Tuzla'ya geldi",
+
+    "ov.figures": "Rakamlarla",
+    "ov.story": "Program hakkında",
+    "ov.projects": "Projeler",
+    "ov.sdg": "BM Sürdürülebilir Kalkınma Amaçları",
+    "ov.gallery": "Saha arşivi",
+    "ov.timeline": "Yolculuk",
+    "ov.voices": "Sesler",
 
     "figures.label": "Rakamlarla yaz",
 
@@ -140,11 +162,12 @@ const I18N = {
     "sdg.targets": "Ele alınan resmî BM hedefleri",
     "sdg.official": "BM amacı",
 
-    "gallery.label": "Saha arşivi",
+    "gallery.label": "Fotoğraflar ve videolar",
     "gallery.intro": "Altı haftadan fotoğraf ve videolar. Projeye göre filtreleyin, büyütmek için herhangi bir kareye tıklayın.",
-    "gallery.filter.all": "[tümü]",
+    "gallery.filter.all": "Tümü",
     "gallery.filter.hint": "gösteriliyor",
     "gallery.clear": "temizle ×",
+    "gallery.tag.community": "Topluluk",
     "gallery.pending": "[ fotoğraf bekleniyor ]",
     "gallery.pendingVideo": "[ video bekleniyor ]",
     "gallery.empty": "[ bu grupta henüz kare yok ]",
@@ -153,8 +176,9 @@ const I18N = {
 
     "voices.label": "Yazın sesleri",
 
-    "partner.badge": "Öneri",
-    "partner.title": "2027'de yeniden — daha büyüğüne.",
+    "partner.badge": "Öneri 2027",
+    "partner.title": "2027'de yeniden",
+    "partner.title.hl": "— daha büyüğüne.",
     "partner.p1": "Tuzla bu yaz küresel bir program ağırladı. Altı haftada, 11+ ülkeden 50+ gönüllü ilçe genelinde atölyeler yürüttü — toplumsal cinsiyet eşitliği, iklim ve dünyayı Tuzla kıyısından görmenin üzerine.",
     "partner.p2": "Belediye mekânları, güveni ve yerel bilgiyi getirdi. AIESEC insanları, eğitimi ve uluslararası ağı getirdi. İşe yaradı. 2027 yazı için önerimiz aynı çerçeve, iki kat ölçek.",
     "partner.1.t": "Daha geniş erişim",
@@ -169,7 +193,7 @@ const I18N = {
     "partner.cta": "2027'yi Öner →",
     "partner.cta2": "2026'ya geri bak ↓",
 
-    "footer.tagline": "Broşür değil, saha raporu. Tamamı monospace ile dizildi.",
+    "footer.tagline": "Broşür değil, saha raporu.",
     "footer.credit": "© 2026 AIESEC in Istanbul Asya × Tuzla Belediyesi — kâr amacı gütmeyen bir topluluk programı.",
     "footer.built": "[x] tasarlandı, yazıldı ve bir yazın kaydı olarak yayına girdi",
 

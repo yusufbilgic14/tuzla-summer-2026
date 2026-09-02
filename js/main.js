@@ -1,5 +1,5 @@
 /* TUZLA SUMMER 2026 — interactions
-   Terminal typing, animated figures, SDG explorer + country map,
+   Animated figures, hero stickers + country marquee, SDG explorer + map,
    filterable gallery, lightbox, timeline, voices, TR/EN toggle. */
 
 (function () {
@@ -10,9 +10,10 @@
   var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  var ACCENTS = ["#FF3A21", "#FFC945", "#3F7E44", "#037EF3", "#19486A", "#FF6B57"];
+
   var state = {
     lang: localStorage.getItem("tuzla26-lang") || "en",
-    script: "main",
     sdg: "5",
     filter: "all",
     figCounter: 0,
@@ -47,12 +48,13 @@
   function applyLang(animateFigures) {
     applyStaticText();
     renderFigures(animateFigures === true);
+    renderHeroStickers();
+    renderMarquee();
     renderProjects();
     renderSDG();
     renderGallery();
     renderTimeline();
     renderVoices();
-    renderTerminal(state.script, true);
     $$(".reveal:not(.in)").forEach(function (n) { revealObserver.observe(n); });
     var mail = $("#partner-mail");
     mail.setAttribute("href", "mailto:" + DATA.contact.email +
@@ -60,165 +62,63 @@
     $("#ig-handle").textContent = "ig: " + DATA.contact.instagram;
   }
 
-  /* ---------------- terminal ---------------- */
+  /* ---------------- hero stickers & marquee ---------------- */
 
-  var SCRIPT_LABELS = {
-    en: {
-      loaded: "aiesec_istanbul_asia × tuzla_belediyesi — field data loaded",
-      status: "status",
-      mainfigs: ["volunteers", "countries", "projects", "residents reached"],
-      ryv: ["equality workshops", "students engaged", "stories exhibited"],
-      gl: ["waste collected", "saplings planted", "residents reached"],
-      mmw: ["global village festivals", "intercultural sessions", "countries connected"]
-    },
-    tr: {
-      loaded: "aiesec_istanbul_asya × tuzla_belediyesi — saha verisi yüklendi",
-      status: "durum",
-      mainfigs: ["gönüllü", "ülke", "proje", "ulaşılan kişi"],
-      ryv: ["eşitlik atölyesi", "ulaşılan öğrenci", "sergilenen hikâye"],
-      gl: ["toplanan atık", "dikilen fidan", "ulaşılan Tuzlalı"],
-      mmw: ["global village şenliği", "kültürlerarası seans", "bağlanan ülke"]
-    }
-  };
-
-  function pad(label) { return ("> " + label + " ").padEnd(30, ".") + " "; }
-
-  function buildScript(id) {
-    var SL = SCRIPT_LABELS[state.lang];
-    var lines = [];
-    function line(segs) { lines.push(segs); }
-    function metric(label, value, cls) {
-      line([
-        { t: pad(label), mode: "type" },
-        { t: value, cls: cls || "k-accent", mode: "pop" }
-      ]);
-    }
-    if (id === "main") {
-      line([{ t: "$ ", mode: "type" }, { t: "summer2026 --report --location=tuzla", cls: "k-accent", mode: "pop" }]);
-      line([{ t: "[ok] ", cls: "k-success", mode: "pop" }, { t: SL.loaded, cls: "k-dim", mode: "type" }]);
-      var figs = {};
-      DATA.figures.forEach(function (f) { figs[f.id] = f; });
-      ["volunteers", "countries", "projects", "reached"].forEach(function (fid, i) {
-        var f = figs[fid];
-        if (!f) return;
-        var v = f.value == null ? "XX" : f.value + (f.suffix || "");
-        metric(SL.mainfigs[i] || fid, v, f.value == null ? "k-warning" : "k-accent");
-      });
-      line([{ t: pad(SL.status), mode: "type" }, { t: "COMPLETED ✓", cls: "k-success", mode: "pop" }]);
-    } else {
-      var proj = DATA.projects.filter(function (p) { return p.id === id; })[0];
-      if (!proj) return buildScript("main");
-      line([{ t: "$ ", mode: "type" }, { t: "run " + proj.code + " --sdg=" + proj.sdg, cls: "k-accent", mode: "pop" }]);
-      line([
-        { t: "[sdg " + proj.sdg + "] ", cls: "k-sdg" + proj.sdg, mode: "pop" },
-        { t: proj.code, cls: "k-dim", mode: "type" }
-      ]);
-      proj.outcomes.forEach(function (o, i) {
-        metric(SL[id][i] || "metric_" + i, o.v || "XX");
-      });
-      line([{ t: pad(SL.status), mode: "type" }, { t: "COMPLETED ✓", cls: "k-success", mode: "pop" }]);
-    }
-    return lines;
+  function renderHeroStickers() {
+    var wrap = $("#hero-stickers");
+    if (!wrap) return;
+    wrap.innerHTML = DATA.projects.map(function (p) {
+      var meta = DATA.sdgMeta[p.sdg];
+      return '<a class="sticker" style="--sdg:' + meta.color + '" href="#proj-' + p.id + '">' +
+        '<span class="s-sdg">SDG</span>' +
+        '<span class="s-num">' + p.sdg + "</span>" +
+        '<span class="s-name">' + L(meta.title) + "</span>" +
+        '<span class="s-code">$ ' + p.code + "</span>" +
+        "</a>";
+    }).join("");
   }
 
-  var typeToken = 0;
-
-  function renderTerminal(id, instant) {
-    var term = $("#terminal");
-    var token = ++typeToken;
-    var script = buildScript(id);
-    term.innerHTML = "";
-    var caret = el("span", "tui-caret", "\u00a0");
-
-    function renderLine(segs) {
-      var div = el("div", "tui-line");
-      segs.forEach(function (seg) {
-        var span = el("span", seg.cls || null);
-        span.textContent = seg.t;
-        div.appendChild(span);
-      });
-      return div;
-    }
-
-    if (instant || prefersReduced) {
-      script.forEach(function (segs) { term.appendChild(renderLine(segs)); });
-      var last = term.lastChild;
-      if (last) last.appendChild(caret);
-      return;
-    }
-
-    (function type() {
-      script.reduce(function (promise, segs) {
-        return promise.then(function () {
-          if (token !== typeToken) return;
-          var div = el("div", "tui-line");
-          term.appendChild(div);
-          if (div.previousSibling) {
-            var pc = div.previousSibling.querySelector(".tui-caret");
-            if (pc) pc.remove();
-          }
-          div.appendChild(caret);
-          return segs.reduce(function (p, seg) {
-            return p.then(function () {
-              if (token !== typeToken) return;
-              var span = el("span", seg.cls || null);
-              div.insertBefore(span, caret);
-              if (seg.mode === "pop") {
-                span.textContent = seg.t;
-                return sleep(60);
-              }
-              return seg.t.split("").reduce(function (cp, ch) {
-                return cp.then(function () {
-                  if (token !== typeToken) return;
-                  span.textContent += ch;
-                  return sleep(ch === "." ? 4 : 13);
-                });
-              }, Promise.resolve());
-            });
-          }, Promise.resolve()).then(function () { return sleep(120); });
-        });
-      }, Promise.resolve());
-    })();
-  }
-
-  function bindTerminalButtons() {
-    $$("#tui-cmds .tui-cmd").forEach(function (b) {
-      b.addEventListener("click", function () {
-        state.script = b.dataset.script;
-        $$("#tui-cmds .tui-cmd").forEach(function (x) {
-          x.setAttribute("aria-pressed", String(x === b));
-        });
-        renderTerminal(state.script, false);
-      });
+  function renderMarquee() {
+    var track = $("#marquee-track");
+    if (!track) return;
+    var one = "";
+    DATA.countries.forEach(function (c, i) {
+      one += '<span class="m-item">' + c + "</span>" +
+        '<span class="m-dot" style="background:' + ACCENTS[i % ACCENTS.length] + '"></span>';
     });
+    track.innerHTML = one + one;
   }
 
   /* ---------------- figures ---------------- */
 
-  function sparkline(points) {
+  function sparkline(points, color) {
     var w = 160, h = 44, max = Math.max.apply(null, points);
     var step = w / (points.length - 1);
     var pts = points.map(function (p, i) {
       return (i * step).toFixed(1) + "," + (h - 4 - (p / max) * (h - 8)).toFixed(1);
     }).join(" ");
     return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="none" aria-hidden="true">' +
-      '<polyline points="' + pts + '" fill="none" stroke="#646262" stroke-width="1.4" ' +
-      'stroke-dasharray="1 5" stroke-linecap="round"/></svg>';
+      '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.2" ' +
+      'stroke-dasharray="1 6" stroke-linecap="round"/></svg>';
   }
 
   function nextFigNo() { return ++state.figCounter; }
   function resetFigs() { state.figCounter = 0; }
+
+  var STAT_COLORS = ["#037EF3", "#E0A800", "#3F7E44", "#FF6B57"];
 
   function renderFigures(animate) {
     resetFigs();
     var grid = $("#figures-grid");
     grid.innerHTML = "";
     DATA.figures.forEach(function (f, i) {
-      var tile = el("div", "chart-tile");
-      tile.innerHTML = sparkline(f.points);
+      var color = STAT_COLORS[i % STAT_COLORS.length];
+      var tile = el("div", "stat-card");
+      tile.style.setProperty("--accent", color);
+      tile.innerHTML = sparkline(f.points, color);
       var num = el("div", "num");
       tile.appendChild(num);
-      var cap = el("div", "caption-md");
+      var cap = el("div", "caption");
       cap.innerHTML = '<span class="fig-no">Fig ' + (i + 1) + '.</span> ' + L(f.caption);
       tile.appendChild(cap);
       grid.appendChild(tile);
@@ -273,55 +173,58 @@
 
   function projectOutcomesHTML(p) {
     return p.outcomes.map(function (o) {
-      return '<div class="list-row"><span class="marker">[x]</span>' +
-        '<span class="lr-desc"><strong>' + (o.v || "XX") + "</strong>" + L(o.post) + "</span></div>";
+      return '<div class="out-row"><span class="out-val">' + (o.v || "XX") + "</span>" +
+        '<span class="out-txt">' + L(o.post) + "</span></div>";
     }).join("");
   }
 
   function projectActivitiesHTML(p) {
     return p.activities.map(function (a) {
-      return '<div class="list-row"><span class="marker">[+]</span><span class="lr-desc">' + L(a) + "</span></div>";
+      return '<li><span class="check" aria-hidden="true">✓</span><span>' + L(a) + "</span></li>";
     }).join("");
   }
 
-  function photoFigHTML(item, figNo) {
+  function photoFigHTML(item, figNo, sdgColor) {
     var inner;
     if (!item.src) {
       inner = pendingMarkup(item);
     } else {
       inner = '<img src="' + item.src + '" alt="' + L(item.caption) + '" loading="lazy">';
     }
-    return '<figure class="photo-fig" data-gi="' + DATA.gallery.indexOf(item) + '">' +
+    return '<figure class="photo-fig" style="--sdg:' + sdgColor + '" data-gi="' + DATA.gallery.indexOf(item) + '">' +
       '<div class="ph">' + inner + "</div>" +
       '<figcaption><span class="fig-no">Fig ' + figNo + '.</span>' + L(item.caption) + "</figcaption></figure>";
   }
 
-  function projectSectionHTML(p) {
+  function projectSectionHTML(p, idx) {
     var meta = DATA.sdgMeta[p.sdg];
     var photos = DATA.gallery.filter(function (g) { return g.project === p.id; }).slice(0, 3);
     state.photoFigs += photos.length;
-    var strip = photos.map(function (g) { return photoFigHTML(g, nextFigNo()); }).join("");
-    return '<article class="project project-rule" id="proj-' + p.id + '">' +
+    var strip = photos.map(function (g) { return photoFigHTML(g, nextFigNo(), meta.color); }).join("");
+    return '<article class="project" id="proj-' + p.id + '" style="--sdg:' + meta.color + '">' +
       '<div class="container">' +
-        '<div class="project-head reveal">' +
-          '<div class="sdg-tag">' +
-            '<span class="sdg-num" style="background:' + meta.color + '">SDG ' + p.sdg + "</span>" +
-            '<span class="sdg-label">' + L(meta.title) + "</span>" +
+        '<div class="p-head reveal">' +
+          '<div class="p-overline">' +
+            '<span class="p-idx">' + String(idx + 1).padStart(2, "0") + '</span>' +
+            '<span class="p-code">$ ' + p.code + "</span>" +
           "</div>" +
-          '<div class="project-code">$ ' + p.code + "</div>" +
-          '<h3 class="project-name">' + L(p.name) + "</h3>" +
-          '<p class="body-md project-tagline">' + L(p.tagline) + "</p>" +
+          '<div class="p-titlerow">' +
+            '<h3 class="project-name">' + L(p.name) + "</h3>" +
+            '<span class="sdg-pill">SDG ' + p.sdg + " · " + L(meta.title) + "</span>" +
+          "</div>" +
+          '<p class="project-tagline">' + L(p.tagline) + "</p>" +
         "</div>" +
-        '<p class="body-md project-mission reveal">' + L(p.mission) + "</p>" +
+        '<p class="project-mission reveal">' + L(p.mission) + "</p>" +
         '<div class="project-cols reveal">' +
-          '<div><h3 class="heading-md">' + t("projects.activities") + '</h3><div class="list-rows">' + projectActivitiesHTML(p) + "</div></div>" +
-          '<div><h3 class="heading-md">' + t("projects.outcomes") + '</h3><div class="list-rows">' + projectOutcomesHTML(p) + "</div></div>" +
+          '<div class="panel-card"><h3>' + t("projects.activities") + '</h3><ul class="act-list">' + projectActivitiesHTML(p) + "</ul></div>" +
+          '<div class="panel-card"><h3>' + t("projects.outcomes") + '</h3><div class="out-rows">' + projectOutcomesHTML(p) + "</div></div>" +
         "</div>" +
         '<div class="photo-strip reveal">' + strip + "</div>" +
-        '<div class="project-quote reveal"><div class="testimonial-row">' +
-          '<div class="t-name"><span class="t-avatar" aria-hidden="true"></span>' + p.quote.name + " · " + L(p.quote.role) + "</div>" +
-          '<div class="t-quote">' + L(p.quote.text) + "</div>" +
-        "</div></div>" +
+        '<div class="quote-card reveal">' +
+          '<span class="q-glyph" aria-hidden="true">“</span>' +
+          '<div class="q-name">' + p.quote.name + ' <span class="q-role">· ' + L(p.quote.role) + "</span></div>" +
+          '<div class="q-text">' + L(p.quote.text) + "</div>" +
+        "</div>" +
       "</div></article>";
   }
 
@@ -329,7 +232,7 @@
     var wrap = $("#projects-list");
     state.figCounter = DATA.figures.length;
     state.photoFigs = 0;
-    wrap.innerHTML = DATA.projects.map(projectSectionHTML).join("");
+    wrap.innerHTML = DATA.projects.map(function (p, i) { return projectSectionHTML(p, i); }).join("");
     bindPhotoClicks(wrap);
   }
 
@@ -382,10 +285,10 @@
     var proj = DATA.projects.filter(function (p) { return p.sdg === sdg; })[0];
     return '<button class="sdg-tile" type="button" data-sdg="' + sdg + '" ' +
       'aria-pressed="' + String(state.sdg === sdg) + '" ' +
-      'style="--tile-accent:' + meta.color + '">' +
-      '<span class="sdg-num">SDG ' + sdg + "</span>" +
-      '<span class="sdg-name">' + L(meta.title) + "</span>" +
-      '<span class="sdg-project">$ ' + (proj ? proj.code : "") + "</span>" +
+      'style="--sdg:' + meta.color + '">' +
+      '<span class="t-num">SDG ' + sdg + "</span>" +
+      '<span class="t-name">' + L(meta.title) + "</span>" +
+      '<span class="t-project">$ ' + (proj ? proj.code : "") + "</span>" +
       "</button>";
   }
 
@@ -393,26 +296,25 @@
     var meta = DATA.sdgMeta[sdg];
     var proj = DATA.projects.filter(function (p) { return p.sdg === sdg; })[0];
     var targets = proj ? proj.targets.map(function (tg) {
-      return '<div class="list-row"><span class="marker">[+]</span>' +
-        '<span class="lr-desc"><strong>' + tg.ref + "</strong> — " + L(tg.text) + "</span></div>";
+      return '<div class="target-row"><span class="target-ref">' + tg.ref + "</span>" +
+        '<span class="target-text">' + L(tg.text) + "</span></div>";
     }).join("") : "";
     var mapHTML = "";
     if (sdg === "17") {
       var figNo = (state.photoFigs || 0) + DATA.figures.length + 1;
       mapHTML = '<div class="sdg-map"><div id="sdg-map-svg">' + buildMap() + "</div>" +
-        '<div class="caption caption-md"><span class="fig-no">Fig ' + figNo + ".</span>SDG 17 — " +
+        '<div class="caption"><span class="fig-no">Fig ' + figNo + ".</span>SDG 17 — " +
         DATA.countries.length + "+ countries → Tuzla</div></div>";
     }
     return '<div class="sdg-detail-left">' +
         '<div class="kicker">' + t("sdg.official") + " " + sdg + " — " + L(meta.title) + "</div>" +
-        '<div class="goal-title">' + L(meta.title) + "</div>" +
-        '<span class="goal-accent"></span>' +
-        '<p class="body-md goal-official">' + L(meta.official) + "</p>" +
+        '<h3 class="goal-title">' + L(meta.title) + "</h3>" +
+        '<p class="goal-official">' + L(meta.official) + "</p>" +
         (proj ? '<a class="link" href="#gallery" id="sdg-see-gallery">' + t("sdg.detail.link") + "</a>" : "") +
       "</div>" +
       '<div class="sdg-detail-right">' +
         '<div class="kicker">' + t("sdg.targets") + "</div>" +
-        '<div class="list-rows">' + targets + "</div>" +
+        '<div class="target-list">' + targets + "</div>" +
         mapHTML +
       "</div>";
   }
@@ -422,7 +324,7 @@
     tiles.innerHTML = ["5", "13", "17"].map(sdgTileHTML).join("");
     var detail = $("#sdg-detail");
     detail.innerHTML = sdgDetailHTML(state.sdg);
-    detail.style.setProperty("--tile-accent", DATA.sdgMeta[state.sdg].color);
+    detail.style.setProperty("--sdg", DATA.sdgMeta[state.sdg].color);
 
     $$(".sdg-tile", tiles).forEach(function (b) {
       b.addEventListener("click", function () {
@@ -470,9 +372,9 @@
 
   function filterLabel(f) {
     if (f === "all") return t("gallery.filter.all");
-    if (f === "community") return "[community]";
+    if (f === "community") return t("gallery.tag.community");
     var proj = DATA.projects.filter(function (p) { return p.id === f; })[0];
-    return "[" + (proj ? proj.code : f) + "]";
+    return proj ? L(proj.name) : f;
   }
 
   function setFilter(f) {
@@ -519,9 +421,11 @@
         media = '<img src="' + item.src + '" alt="' + L(item.caption) + '" loading="lazy">';
       }
       var play = item.type === "video" ? '<span class="playmark">[▶]</span>' : "";
+      var tag = item.project === "community" ? t("gallery.tag.community")
+        : "SDG " + (DATA.projects.filter(function (p) { return p.id === item.project; })[0] || {}).sdg;
       return '<figure class="gallery-item" data-gi="' + gi + '">' +
         '<div class="ph">' + play + media + "</div>" +
-        "<figcaption>" + L(item.caption) + "</figcaption></figure>";
+        '<figcaption><span class="g-tag">' + tag + "</span><br>" + L(item.caption) + "</figcaption></figure>";
     }).join("");
 
     $$(".gallery-item", grid).forEach(function (figEl) {
@@ -630,17 +534,21 @@
   /* ---------------- timeline & voices ---------------- */
 
   function renderTimeline() {
-    $("#timeline-list").innerHTML = DATA.timeline.map(function (ev) {
-      return '<div class="list-row"><span class="t-date">' + ev.date + "</span>" +
-        '<span class="t-body"><span class="t-title">' + L(ev.title) + "</span><br>" + L(ev.desc) + "</span></div>";
+    $("#timeline-list").innerHTML = DATA.timeline.map(function (ev, i) {
+      return '<div class="tl-row"><span class="tl-dot" style="--dot:' + ACCENTS[(i + 3) % ACCENTS.length] + '"></span>' +
+        '<span class="tl-date">' + ev.date.replace(/[\[\]]/g, "") + "</span>" +
+        '<h4 class="tl-title">' + L(ev.title) + "</h4>" +
+        '<p class="tl-desc">' + L(ev.desc) + "</p></div>";
     }).join("");
   }
 
   function renderVoices() {
     $("#voices-list").innerHTML = DATA.voices.map(function (v) {
-      return '<div class="testimonial-row">' +
-        '<div class="t-name"><span class="t-avatar" aria-hidden="true"></span>' + v.name + " · " + L(v.role) + "</div>" +
-        '<div class="t-quote">' + L(v.quote) + "</div></div>";
+      return '<div class="voice-card">' +
+        '<span class="v-glyph" aria-hidden="true">“</span>' +
+        '<div class="v-quote">' + L(v.quote) + "</div>" +
+        '<div class="v-name">' + v.name + '</div>' +
+        '<div class="v-role">' + L(v.role) + "</div></div>";
     }).join("");
   }
 
@@ -690,8 +598,6 @@
   function init() {
     applyLang(true);
     bindLang();
-    bindTerminalButtons();
-    renderTerminal("main", false);
     bindLightbox();
     bindNav();
     $$(".reveal").forEach(function (n) { revealObserver.observe(n); });
