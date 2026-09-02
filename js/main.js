@@ -60,6 +60,8 @@
     mail.setAttribute("href", "mailto:" + DATA.contact.email +
       "?subject=" + encodeURIComponent("Summer 2027 partnership — Tuzla"));
     $("#ig-handle").textContent = "ig: " + DATA.contact.instagram;
+    var wp = $("#world-partner");
+    if (wp) wp.innerHTML = worldSVG({ base: "rgba(255,255,255,0.10)", accentOpacity: 0.75 });
   }
 
   /* ---------------- hero stickers & marquee ---------------- */
@@ -201,7 +203,12 @@
     var photos = DATA.gallery.filter(function (g) { return g.project === p.id; }).slice(0, 3);
     state.photoFigs += photos.length;
     var strip = photos.map(function (g) { return photoFigHTML(g, nextFigNo(), meta.color); }).join("");
+    var deco = p.id === "mmw"
+      ? '<div class="world-deco world-mmw" aria-hidden="true">' +
+        worldSVG({ base: "rgba(10,37,64,0.10)", accentOpacity: 0.9 }) + "</div>"
+      : "";
     return '<article class="project" id="proj-' + p.id + '" style="--sdg:' + meta.color + '">' +
+      deco +
       '<div class="container">' +
         '<div class="p-head reveal">' +
           '<div class="p-overline">' +
@@ -238,44 +245,72 @@
 
   /* ---------------- SDG explorer ---------------- */
 
-  var MAP_POS = {
-    "Italy": [300, 150], "Italia": [300, 150],
-    "Spain": [225, 195], "España": [225, 195],
-    "Poland": [385, 105],
-    "Portugal": [195, 215],
-    "Ukraine": [435, 130],
-    "Egypt": [400, 305],
-    "Morocco": [225, 295],
-    "Indonesia": [655, 395],
-    "India": [540, 270],
-    "Mexico": [85, 225],
-    "Brazil": [155, 375]
-  };
+  var CELL = 12;
+  var MAP_W = WORLD_COLS * CELL;
+  var MAP_H = WORLD_ROWS * CELL;
 
-  function mapCountryPos(name, idx, total) {
-    if (MAP_POS[name]) return MAP_POS[name];
-    var arc = 100 + (idx % 6) * 70;
-    return [arc, 120 + ((idx * 53) % 300)];
+  function projXY(lon, lat) {
+    return [
+      ((lon - WORLD_LON0) / WORLD_LON_STEP) * CELL,
+      ((WORLD_LAT0 - lat) / WORLD_LAT_STEP) * CELL
+    ];
+  }
+
+  function countryXY(name, idx) {
+    var pos = WORLD_POS[name];
+    if (pos) return projXY(pos[0], pos[1]);
+    var tuzla = projXY(29.1, 40.8);
+    var ang = idx * 2.39996;
+    return [tuzla[0] + 150 * Math.cos(ang), tuzla[1] + 120 * Math.sin(ang)];
+  }
+
+  function landDotsSVG(opts) {
+    opts = opts || {};
+    var base = opts.base || "rgba(10,37,64,0.16)";
+    var accentOpacity = opts.accentOpacity == null ? 0.9 : opts.accentOpacity;
+    var r = opts.r || 3.4;
+    var out = "";
+    WORLD_GRID.forEach(function (row, ri) {
+      for (var ci = 0; ci < row.length; ci++) {
+        if (row.charAt(ci) !== "#") continue;
+        var x = (ci * CELL + CELL / 2).toFixed(1);
+        var y = (ri * CELL + CELL / 2).toFixed(1);
+        var accent = ((ri * 7 + ci * 13) % 23) === 0;
+        var fill = accent ? ACCENTS[(ri + ci) % ACCENTS.length] : base;
+        out += '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + fill + '"' +
+          (accent ? ' opacity="' + accentOpacity + '"' : "") + "/>";
+      }
+    });
+    return out;
+  }
+
+  function worldSVG(opts) {
+    return '<svg viewBox="0 0 ' + MAP_W + " " + MAP_H + '" aria-hidden="true">' +
+      landDotsSVG(opts) + "</svg>";
   }
 
   function buildMap() {
-    var hub = [640, 240];
-    var svg = '<svg viewBox="0 0 800 460" role="img" aria-label="Network of countries connected to Tuzla">';
-    var arcs = "", dots = "", labels = "";
+    var tuzla = projXY(29.1, 40.8);
+    var svg = '<svg viewBox="0 0 ' + MAP_W + " " + MAP_H +
+      '" role="img" aria-label="Dotted world map with partner countries connected to Tuzla">';
+    svg += "<g>" + landDotsSVG({ base: "rgba(10,37,64,0.18)", accentOpacity: 0.9, r: 3.4 }) + "</g>";
+    var arcs = "", dots = "";
     DATA.countries.forEach(function (c, i) {
-      var pos = mapCountryPos(c, i, DATA.countries.length);
-      var mx = (pos[0] + hub[0]) / 2;
-      var my = Math.min(pos[1], hub[1]) - 70;
-      arcs += '<path class="map-arc" data-arc="' + i + '" d="M' + pos[0] + "," + pos[1] +
-        " Q" + mx.toFixed(0) + "," + my.toFixed(0) + " " + hub[0] + "," + hub[1] + '"/>';
-      dots += '<circle class="map-dot" cx="' + pos[0] + '" cy="' + pos[1] + '" r="4"/>';
-      labels += '<text class="map-country" x="' + (pos[0] + 8) + '" y="' + (pos[1] + 4) + '">' + c + "</text>";
+      var pos = countryXY(c, i);
+      var color = ACCENTS[i % ACCENTS.length];
+      var mx = (pos[0] + tuzla[0]) / 2;
+      var my = Math.min(pos[1], tuzla[1]) - Math.max(26, Math.abs(pos[0] - tuzla[0]) * 0.22);
+      arcs += '<path class="map-arc" data-arc="' + i + '" style="stroke:' + color +
+        '" d="M' + pos[0].toFixed(1) + "," + pos[1].toFixed(1) +
+        " Q" + mx.toFixed(1) + "," + my.toFixed(1) + " " + tuzla[0].toFixed(1) + "," + tuzla[1].toFixed(1) + '"/>';
+      dots += '<circle class="map-dot" style="fill:' + color + '" cx="' + pos[0].toFixed(1) +
+        '" cy="' + pos[1].toFixed(1) + '" r="5.5"><title>' + c + "</title></circle>";
     });
-    svg += arcs + dots + labels;
-    svg += '<circle class="map-hub-ring" cx="' + hub[0] + '" cy="' + hub[1] + '" r="10"/>';
-    svg += '<circle class="map-hub" cx="' + hub[0] + '" cy="' + hub[1] + '" r="5"/>';
-    svg += '<text class="map-country" x="' + (hub[0] - 12) + '" y="' + (hub[1] - 16) +
-      '" style="font-weight:700;fill:#201d1d">TUZLA</text>';
+    svg += arcs + dots;
+    svg += '<circle class="map-hub-ring" cx="' + tuzla[0].toFixed(1) + '" cy="' + tuzla[1].toFixed(1) + '" r="12"/>';
+    svg += '<circle class="map-hub" cx="' + tuzla[0].toFixed(1) + '" cy="' + tuzla[1].toFixed(1) + '" r="6"/>';
+    svg += '<text class="map-country" x="' + tuzla[0].toFixed(1) + '" y="' + (tuzla[1] - 18).toFixed(1) +
+      '" text-anchor="middle" style="font-weight:800;fill:#0A2540">TUZLA</text>';
     svg += "</svg>";
     return svg;
   }
