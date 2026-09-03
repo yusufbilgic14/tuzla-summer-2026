@@ -4,3 +4,5 @@
 *.mp4
 !*-web.mp4
 static/
+__pycache__/
+*.pyc
