@@ -26,17 +26,20 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
-## Run the Streamlit app
+## Run the Streamlit app (optional)
+
+The Streamlit mirror lives in `streamlit/`:
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+pip install -r streamlit/requirements.txt
+streamlit run streamlit/app.py
 ```
 
 ## Deploy
 
-- **Streamlit Community Cloud**: share the repo, set main branch + `app.py` → done.
-- **Static site**: upload the folder to any static host (GitHub Pages, Vercel, Netlify, the municipality's server).
+- **Vercel (recommended)**: import the repo — `vercel.json` is preconfigured to deploy the static site (no build tooling, no Python detection). Push to `main` and it redeploys automatically.
+- **Other static hosts**: upload the folder to GitHub Pages, Netlify, or the municipality's server.
+- **Streamlit Community Cloud (optional)**: set the main file path to `streamlit/app.py`.
 
 ## Credits
 

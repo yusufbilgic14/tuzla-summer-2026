@@ -13,8 +13,15 @@ import os
 import re
 import shutil
 
+import os
+
 import streamlit as st
 from PIL import Image
+
+# Repo root: this file lives in <root>/streamlit/, the site content in <root>.
+BASE = os.path.dirname(os.path.abspath(__file__))
+ROOT = BASE if os.path.isdir(os.path.join(BASE, "js")) else os.path.dirname(BASE)
+os.chdir(ROOT)
 
 st.set_page_config(
     page_title="Tuzla Summer 2026 — AIESEC in Istanbul Asia × Tuzla Municipality",
