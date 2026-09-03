@@ -418,6 +418,8 @@
   }
 
   function renderGallery() {
+    var colCount = galleryColCount();
+    lastGalleryCols = colCount;
     var chips = $("#gallery-chips");
     chips.innerHTML = FILTERS.map(function (f) {
       return '<button class="chip-btn" type="button" data-filter="' + f + '" aria-pressed="' +
@@ -439,7 +441,9 @@
       grid.innerHTML = '<div class="caption-md">' + t("gallery.empty") + "</div>";
       return;
     }
-    grid.innerHTML = items.map(function (item) {
+    var cols = [];
+    for (var ci = 0; ci < colCount; ci++) cols.push('<div class="g-col">');
+    items.forEach(function (item, vi) {
       var gi = DATA.gallery.indexOf(item);
       var media;
       if (item.type === "video") {
@@ -458,10 +462,12 @@
       var play = item.type === "video" ? '<span class="playmark">[▶]</span>' : "";
       var tag = item.project === "community" ? t("gallery.tag.community")
         : "SDG " + (DATA.projects.filter(function (p) { return p.id === item.project; })[0] || {}).sdg;
-      return '<figure class="gallery-item" data-gi="' + gi + '">' +
+      cols[vi % colCount] += '<figure class="gallery-item" data-gi="' + gi + '">' +
         '<div class="ph">' + play + media + "</div>" +
         '<figcaption><span class="g-tag">' + tag + "</span><br>" + L(item.caption) + "</figcaption></figure>";
-    }).join("");
+    });
+    for (ci = 0; ci < colCount; ci++) cols[ci] += "</div>";
+    grid.innerHTML = cols.join("");
 
     $$(".gallery-item", grid).forEach(function (figEl) {
       var gi = parseInt(figEl.dataset.gi, 10);
@@ -481,6 +487,14 @@
         if (figEl.dataset.loaded === "1" || item.type === "video") openLightbox(gi);
       });
     });
+  }
+
+  var lastGalleryCols = 0;
+
+  function galleryColCount() {
+    if (window.matchMedia("(min-width: 851px)").matches) return 3;
+    if (window.matchMedia("(min-width: 641px)").matches) return 2;
+    return 1;
   }
 
   /* ---------------- lightbox ---------------- */
@@ -650,6 +664,13 @@
     bindLightbox();
     bindNav();
     bindHeroPhoto();
+    var rzT;
+    window.addEventListener("resize", function () {
+      clearTimeout(rzT);
+      rzT = setTimeout(function () {
+        if (galleryColCount() !== lastGalleryCols) renderGallery();
+      }, 150);
+    });
     $$(".reveal").forEach(function (n) { revealObserver.observe(n); });
   }
 
