@@ -217,8 +217,8 @@ const DATA = {
   ],
 
   countries: [
-    "Italy", "Spain", "Poland", "Portugal", "Ukraine", "Egypt",
-    "Morocco", "Indonesia", "India", "Mexico", "Brazil"
+    "Tunisia", "Morocco", "Ukraine", "Algeria", "Azerbaijan", "China",
+    "Kazakhstan", "Jordan", "Turkey"
   ],
 
   projects: [
@@ -357,18 +357,36 @@ const DATA = {
     { src: "assets/photos/community/mainprojectphoto.jpeg", project: "community", caption: { en: "The whole crew at Şelale Park", tr: "Şelale Park’ta tüm ekip" } },
     { src: "assets/photos/community/groupphoto-web.jpg", project: "community", caption: { en: "The crew on a museum day", tr: "Müze gününde ekip" } },
     { src: "assets/photos/community/littlegroupphoto.jpeg", project: "community", caption: { en: "Selfie o’clock — between sessions", tr: "Seans arası selfie molası" } },
-    { src: "assets/photos/community/com-01.jpg", project: "community", caption: { en: "Arrival week — onboarding in Istanbul", tr: "Geliş haftası — İstanbul'da oryantasyon" } },
-    { src: null, type: "video", project: "community", caption: { en: "Summer aftermovie — drop assets/videos/aftermovie.mp4 or paste an embed URL", tr: "Yaz filminiz — assets/videos/aftermovie.mp4 olarak ekleyin veya embed bağlantısı yapıştırın" } },
-    { src: "assets/photos/raise-your-voice/ryv-01.jpg", project: "ryv", caption: { en: "Raise Your Voice — school workshop", tr: "Raise Your Voice — okul atölyesi" } },
-    { src: "assets/photos/raise-your-voice/ryv-02.jpg", project: "ryv", caption: { en: "Raise Your Voice — storytelling lab", tr: "Raise Your Voice — hikâye anlatımı atölyesi" } },
-    { src: "assets/photos/raise-your-voice/ryv-03.jpg", project: "ryv", caption: { en: "Raise Your Voice — closing exhibition", tr: "Raise Your Voice — kapanış sergisi" } },
-    { src: "assets/photos/green-leaders/gl-01.jpg", project: "gl", caption: { en: "Green Leaders — shoreline cleanup", tr: "Green Leaders — kıyı temizliği" } },
-    { src: "assets/photos/green-leaders/gl-02.jpg", project: "gl", caption: { en: "Green Leaders — planting day", tr: "Green Leaders — fidan dikim günü" } },
-    { src: "assets/photos/green-leaders/gl-03.jpg", project: "gl", caption: { en: "Green Leaders — climate workshop", tr: "Green Leaders — iklim atölyesi" } },
-    { src: "assets/photos/myself-my-world/mmw-01.jpg", project: "mmw", caption: { en: "Myself My World — Global Village", tr: "Myself My World — Global Village" } },
-    { src: "assets/photos/myself-my-world/mmw-02.jpg", project: "mmw", caption: { en: "Myself My World — intercultural session", tr: "Myself My World — kültürlerarası seans" } },
-    { src: "assets/photos/myself-my-world/mmw-03.jpg", project: "mmw", caption: { en: "Myself My World — country corners", tr: "Myself My World — ülke köşeleri" } }
-  
+    { src: "assets/photos/community/IMG-20260708-WA0040-web.jpg", project: "community", caption: { en: "Dinner with the whole family", tr: "Koca bir aile ile akşam yemeği" } },
+    { src: "assets/photos/community/IMG-20260708-WA0064.jpg", project: "community", caption: { en: "The long table — dinner all together", tr: "Uzun masa — hep birlikte akşam yemeği" } },
+    { src: "assets/photos/community/IMG-20260708-WA0063.jpg", project: "community", caption: { en: "Cultural night — the stage is set", tr: "Kültür gecesi — sahne hazır" } },
+    { src: "assets/photos/community/IMG-20260710-WA0015.jpg", project: "community", caption: { en: "One last dinner, all together", tr: "Veda yemeği, hep birlikte" } },
+    { src: "assets/photos/raise-your-voice/IMG-20260723-WA0225.jpg", project: "ryv", caption: { en: "Community walk — raising our voices together", tr: "Topluluk yürüyüşü — sesimizi birlikte yükselttik" } },
+    { src: "assets/photos/raise-your-voice/IMG-20260723-WA0260.jpg", project: "ryv", caption: { en: "Proud and loud with the flag", tr: "Bayrakla gururla, yüksek sesle" } },
+    { src: "assets/photos/raise-your-voice/VID-20260723-WA0137.mp4", poster: "assets/photos/raise-your-voice/VID-20260723-WA0137-poster.jpg", type: "video", project: "ryv", caption: { en: "Raising voices — the walk in motion", tr: "Sesimizi yükseltiyoruz — yürüyüşten" } },
+    { src: "assets/photos/green-leaders/20260713_112031.jpg", project: "gl", caption: { en: "Upcycling atelier — bottles get a second life", tr: "Geri dönüşüm atölyesi — şişelere ikinci hayat" } },
+    { src: "assets/photos/green-leaders/20260728_151836.jpg", project: "gl", caption: { en: "Planting day — the team in the field", tr: "Dikim günü — ekip sahada" } },
+    { src: "assets/photos/green-leaders/IMG-20260720-WA0109-web.jpg", project: "gl", caption: { en: "Cleanup crew — bags full by the trees", tr: "Temizlik ekibi — ağaçlar yanında dolu torbalar" } },
+    { src: "assets/photos/green-leaders/20260727_143319.jpg", project: "gl", caption: { en: "Digging in — sapling by sapling", tr: "Toprağa dokunmak — fidan fidan" } },
+    { src: "assets/photos/green-leaders/20260727_144743.jpg", project: "gl", caption: { en: "Planting the future", tr: "Geleceği dikiyoruz" } },
+    { src: "assets/photos/green-leaders/20260727_143846.jpg", project: "gl", caption: { en: "Selfie with the sapling", tr: "Fidanla selfie" } },
+    { src: "assets/photos/green-leaders/20260713_161355.jpg", project: "gl", caption: { en: "Poster-making for the campaign", tr: "Kampanya için afiş çalışması" } },
+    { src: "assets/photos/green-leaders/20260713_113000.jpg", project: "gl", caption: { en: "Climate literacy — classroom session", tr: "İklim okuryazarlığı — sınıf seansı" } },
+    { src: "assets/photos/green-leaders/20260729_133109.jpg", project: "gl", caption: { en: "Zero-waste atelier — paint and brushes", tr: "Sıfır atık atölyesi — boya ve fırça" } },
+    { src: "assets/photos/green-leaders/IMG-20260720-WA0103-web.jpg", project: "gl", caption: { en: "Plogging along the park", tr: "Park boyunca çöp toplama" } },
+    { src: "assets/photos/green-leaders/20260706_113845.jpg", project: "gl", caption: { en: "Planning session — the climate team", tr: "Planlama seansı — iklim ekibi" } },
+    { src: "assets/photos/green-leaders/20260713_112126-web.mp4", poster: "assets/photos/green-leaders/20260713_112126-web-poster.jpg", type: "video", project: "gl", caption: { en: "Upcycling atelier in motion", tr: "Geri dönüşüm atölyesinden" } },
+    { src: "assets/photos/green-leaders/20260727_142638-web.mp4", poster: "assets/photos/green-leaders/20260727_142638-web-poster.jpg", type: "video", project: "gl", caption: { en: "Planting day — first shovel", tr: "Dikim günü — ilk kürek" } },
+    { src: "assets/photos/green-leaders/20260727_143734-web.mp4", poster: "assets/photos/green-leaders/20260727_143734-web-poster.jpg", type: "video", project: "gl", caption: { en: "Planting day — out in the field", tr: "Dikim günü — sahada" } },
+    { src: "assets/photos/myself-my-world/IMG-20260720-WA0130.jpg", project: "mmw", caption: { en: "Country corner — hoş geldin!", tr: "Ülke köşesi — hoş geldin!" } },
+    { src: "assets/photos/myself-my-world/IMG-20260718-WA0091.jpg", project: "mmw", caption: { en: "Cooking session — sharing our tables", tr: "Yemek seansı — sofralarımızı paylaşıyoruz" } },
+    { src: "assets/photos/myself-my-world/WhatsApp Image 2026-07-16 at 16.26.00.jpeg", project: "mmw", caption: { en: "Picnic with new friends", tr: "Yeni arkadaşlarla piknik" } },
+    { src: "assets/photos/myself-my-world/IMG-20260720-WA0147.jpg", project: "mmw", caption: { en: "Intercultural session — the country boards", tr: "Kültürlerarası seans — ülke panoları" } },
+    { src: "assets/photos/myself-my-world/IMG-20260720-WA0170.jpg", project: "mmw", caption: { en: "Sessions in full swing", tr: "Seanslar tam gaz" } },
+    { src: "assets/photos/myself-my-world/IMG-20260720-WA0176.jpg", project: "mmw", caption: { en: "Country corners — questions flying", tr: "Ülke köşeleri — sorular havada" } },
+    { src: "assets/photos/myself-my-world/IMG-20260720-WA0185.jpg", project: "mmw", caption: { en: "Crafting the country boards", tr: "Ülke panoları hazırlanıyor" } },
+    { src: "assets/photos/myself-my-world/WhatsApp Image 2026-07-13 at 22.23.43.jpeg", project: "mmw", caption: { en: "Park day with the whole crew", tr: "Tüm ekiple park günü" } },
+    { src: "assets/photos/myself-my-world/VID-20260717-WA0017.mp4", poster: "assets/photos/myself-my-world/VID-20260717-WA0017-poster.jpg", type: "video", project: "mmw", caption: { en: "Cooking together — a taste of home", tr: "Birlikte yemek — memleket tadında" } }
   ],
 
   timeline: [

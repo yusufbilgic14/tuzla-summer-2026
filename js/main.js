@@ -187,14 +187,21 @@
   }
 
   function photoFigHTML(item, figNo, sdgColor) {
-    var inner;
-    if (!item.src) {
+    var inner, play = "";
+    if (item.type === "video") {
+      play = '<span class="playmark">[▶]</span>';
+      inner = item.poster
+        ? '<img src="' + item.poster + '" alt="' + L(item.caption) + '" loading="lazy">'
+        : (item.src
+          ? '<div class="vthumb">[▶]<br>' + item.src.split("/").pop() + "</div>"
+          : pendingMarkup(item));
+    } else if (!item.src) {
       inner = pendingMarkup(item);
     } else {
       inner = '<img src="' + item.src + '" alt="' + L(item.caption) + '" loading="lazy">';
     }
     return '<figure class="photo-fig" style="--sdg:' + sdgColor + '" data-gi="' + DATA.gallery.indexOf(item) + '">' +
-      '<div class="ph">' + inner + "</div>" +
+      '<div class="ph">' + play + inner + "</div>" +
       '<figcaption><span class="fig-no">Fig ' + figNo + '.</span>' + L(item.caption) + "</figcaption></figure>";
   }
 
