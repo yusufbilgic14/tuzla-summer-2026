@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><style>body{margin:0}video{width:960px;height:540px;object-fit:cover}</style></head>
+<body><video id="v" src="__SRC__" muted autoplay playsinline preload="auto"></video>
+<script>
+var v = document.getElementById("v");
+v.addEventListener("loadeddata", function () { v.currentTime = 1; });
+</script></body></html>
