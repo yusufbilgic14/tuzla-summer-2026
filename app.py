@@ -9,7 +9,9 @@ Cloud (main branch, app.py) or run locally:
 """
 
 import json
+import os
 import re
+import shutil
 
 import streamlit as st
 from PIL import Image
@@ -42,6 +44,9 @@ I18N, DATA = load_content()
 if "lang" not in st.session_state:
     st.session_state.lang = "en"
 
+if "view" not in st.session_state:
+    st.session_state.view = "site"
+
 
 def T(key):
     return I18N[st.session_state.lang].get(key, I18N["en"].get(key, key))
@@ -70,12 +75,54 @@ def fig_value(fig):
     return "XX" if fig["value"] is None else f'{fig["value"]}{fig["suffix"]}'
 
 
+@st.cache_resource(show_spinner="Preparing the website files…")
+def ensure_static_site():
+    """Hard-link the real site (index.html, css, js, assets) into static/site
+    so Streamlit's built-in static server can serve it to the embedded frame."""
+    dst_root = os.path.join("static", "site")
+    if os.path.islink(dst_root):
+        os.remove(dst_root)
+    if os.path.isdir(dst_root):
+        shutil.rmtree(dst_root, ignore_errors=True)
+
+    def link_tree(src_root, rel_keep=""):
+        for root, _dirs, files in os.walk(src_root):
+            rel = os.path.relpath(root, src_root)
+            target_dir = os.path.join(dst_root, rel_keep, rel) if rel_keep else os.path.join(dst_root, rel)
+            os.makedirs(target_dir, exist_ok=True)
+            for f in files:
+                if f.endswith(".heic"):
+                    continue
+                src = os.path.join(root, f)
+                tgt = os.path.join(target_dir, f)
+                try:
+                    os.link(src, tgt)
+                except OSError:
+                    shutil.copy2(src, tgt)
+
+    os.makedirs(dst_root, exist_ok=True)
+    shutil.copy2("index.html", os.path.join(dst_root, "index.html"))
+    link_tree("css", "css")
+    link_tree("js", "js")
+    link_tree("assets", "assets")
+    return True
+
+
+ensure_static_site()
+
+
 # ---------------------------------------------------------------------------
 # Sidebar
 # ---------------------------------------------------------------------------
 
 with st.sidebar:
     st.image("assets/logos/AIESEClogo.png", width=150)
+    st.radio(
+        "View", ["site", "native"], key="view",
+        format_func=lambda v: "🌐 Website view" if v == "site" else "📋 Simple view",
+        label_visibility="collapsed",
+    )
+    st.divider()
     st.image("assets/logos/tuzla_belediyesi_logo.png", width=84)
     st.radio(
         "Language / Dil", ["en", "tr"], key="lang",
@@ -90,6 +137,26 @@ with st.sidebar:
 # ---------------------------------------------------------------------------
 # Hero
 # ---------------------------------------------------------------------------
+
+if st.session_state.view == "site":
+    st.markdown(
+        "<style>"
+        'header[data-testid="stHeader"] {display: none;}'
+        "#MainMenu {visibility: hidden;}"
+        'div[data-testid="stBlockContainer"], .block-container {'
+        "padding: 0 !important; margin: 0 !important; max-width: 100% !important;}"
+        "footer {visibility: hidden;}"
+        "</style>",
+        unsafe_allow_html=True,
+    )
+    st.iframe(
+        "/app/static/site/index.html",
+        height=920,
+        width="stretch",
+    )
+    st.stop()
+
+# --- native (simple) view ---------------------------------------------------
 
 st.markdown(f"##### {T('hero.badge')}")
 st.markdown(f"# {T('hero.title.a')} :orange[{T('hero.title.b')}]")

@@ -3,3 +3,4 @@
 *.heic
 *.mp4
 !*-web.mp4
+static/
