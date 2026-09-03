@@ -448,6 +448,7 @@
       grid.innerHTML = '<div class="caption-md">' + t("gallery.empty") + "</div>";
       return;
     }
+    galleryImgObserver.disconnect();
     var cols = [];
     for (var ci = 0; ci < colCount; ci++) cols.push('<div class="g-col">');
     items.forEach(function (item, vi) {
@@ -455,7 +456,7 @@
       var media;
       if (item.type === "video") {
         if (item.poster) {
-          media = '<img src="' + item.poster + '" alt="' + L(item.caption) + '" loading="lazy">';
+          media = '<img class="g-img" data-src="' + item.poster + '" alt="' + L(item.caption) + '">';
         } else if (item.src) {
           media = '<div class="vthumb">[▶]<br>' + (item.src.split("/").pop()) + "</div>";
         } else {
@@ -464,7 +465,7 @@
       } else if (!item.src) {
         media = pendingMarkup(item);
       } else {
-        media = '<img src="' + item.src + '" alt="' + L(item.caption) + '" loading="lazy">';
+        media = '<img class="g-img" data-src="' + item.src + '" alt="' + L(item.caption) + '">';
       }
       var play = item.type === "video" ? '<span class="playmark">[▶]</span>' : "";
       var tag = item.project === "community" ? t("gallery.tag.community")
@@ -494,9 +495,30 @@
         if (figEl.dataset.loaded === "1" || item.type === "video") openLightbox(gi);
       });
     });
+
+    if ("IntersectionObserver" in window) {
+      $$("img.g-img[data-src]", grid).forEach(function (img) {
+        galleryImgObserver.observe(img);
+      });
+    } else {
+      $$("img.g-img[data-src]", grid).forEach(function (img) {
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+      });
+    }
   }
 
   var lastGalleryCols = 0;
+
+  var galleryImgObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      galleryImgObserver.unobserve(e.target);
+      var img = e.target;
+      img.src = img.getAttribute("data-src");
+      img.removeAttribute("data-src");
+    });
+  }, { rootMargin: "700px 0px" });
 
   function galleryColCount() {
     if (window.matchMedia("(min-width: 851px)").matches) return 3;
@@ -617,7 +639,7 @@
         revealObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05 });
 
   /* ---------------- nav ---------------- */
 

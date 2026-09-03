@@ -418,48 +418,49 @@ const DATA = {
   ],
 
   timeline: [
-    { date: "[16 Jun]", title: { en: "Arrival & onboarding", tr: "Varış ve oryantasyon" }, desc: { en: "50+ volunteers land in Istanbul for Global Volunteer training week.", tr: "50+ gönüllü, Global Volunteer eğitim haftası için İstanbul'a indi." } },
-    { date: "[23 Jun]", title: { en: "Kickoff with Tuzla Municipality", tr: "Tuzla Belediyesi ile başlangıç" }, desc: { en: "Venues, teams and schedules set together with municipal directorates.", tr: "Mekânlar, ekipler ve takvimler belediye müdürlükleriyle birlikte belirlendi." } },
-    { date: "[30 Jun]", title: { en: "Raise Your Voice begins", tr: "Raise Your Voice başladı" }, desc: { en: "First equality workshops in district schools.", tr: "İlçedeki okullarda ilk eşitlik atölyeleri." } },
-    { date: "[07 Jul]", title: { en: "First shoreline cleanup", tr: "İlk kıyı temizliği" }, desc: { en: "Green Leaders crews start the weekly cleanup rotation on the Tuzla coast.", tr: "Green Leaders ekipleri Tuzla kıyısında haftalık temizlik dönüşüne başladı." } },
-    { date: "[14 Jul]", title: { en: "Global Village", tr: "Global Village" }, desc: { en: "11 countries set up their corners in a Tuzla public square.", tr: "11 ülke, Tuzla'nın bir kamu meydanında köşelerini kurdu." } },
-    { date: "[28 Jul]", title: { en: "Planting day", tr: "Dikim günü" }, desc: { en: "Saplings in the ground with municipal park teams and local kids.", tr: "Belediye park ekipleri ve yerel çocuklarla fidanlar toprakla buluştu." } },
-    { date: "[04 Aug]", title: { en: "Women's leadership circle", tr: "Kadın liderlik çevresi" }, desc: { en: "Closing circle with the municipality's women's programs.", tr: "Belediyenin kadın programlarıyla kapanış çevresi." } },
-    { date: "[15 Aug]", title: { en: "Departure", tr: "Veda" }, desc: { en: "The volunteers leave; the report you are reading begins.", tr: "Gönüllüler ayrıldı; okuduğunuz rapor başladı." } }
+    { date: "[30 June]", title: { en: "Arrival & onboarding", tr: "Varış ve oryantasyon" }, desc: { en: "50+ volunteers land in Istanbul for Global Volunteer training week.", tr: "50+ gönüllü, Global Volunteer eğitim haftası için İstanbul'a indi." } },
+    { date: "[1 July]", title: { en: "Kickoff with Tuzla Municipality", tr: "Tuzla Belediyesi ile başlangıç" }, desc: { en: "Venues, teams and schedules set together with municipal directorates.", tr: "Mekânlar, ekipler ve takvimler belediye müdürlükleriyle birlikte belirlendi." } },
+        { date: "[18 July]", title: { en: "Gender Equality Congress", tr: "Cinsiyet Eşitliği Kongresi" }, desc: { en: "Congress with the municipality's women's programs.", tr: "Belediyenin kadın programlarıyla eşitlik kongresi." } },
+
+    { date: "[22 Jul]", title: { en: "First shoreline cleanup", tr: "İlk kıyı temizliği" }, desc: { en: "Green Leaders crews start the weekly cleanup rotation on the Tuzla coast.", tr: "Green Leaders ekipleri Tuzla kıyısında haftalık temizlik dönüşüne başladı." } },
+    { date: "[27 Jul]", title: { en: "Planting day", tr: "Dikim günü" }, desc: { en: "Saplings in the ground with municipal park teams and local kids.", tr: "Belediye park ekipleri ve yerel çocuklarla fidanlar toprakla buluştu." } },
+        { date: "[29 Jul]", title: { en: "Global Village", tr: "Global Village" }, desc: { en: "11 countries set up their corners in a Tuzla public square.", tr: "11 ülke, Tuzla'nın bir kamu meydanında köşelerini kurdu." } },
+
+    { date: "[12 Aug]", title: { en: "Departure", tr: "Veda" }, desc: { en: "The volunteers leave; the report you are reading begins.", tr: "Gönüllüler ayrıldı; okuduğunuz rapor başladı." } }
   ],
 
   voices: [
     {
       quote: {
-        en: "I came to teach gender equality. I left having learned how much a district can teach a volunteer.",
-        tr: "Toplumsal cinsiyet eşitliğini öğretmeye geldim. Bir ilçenin bir gönüllüye ne kadar çok şey öğretebileceğini öğrenerek gittim."
+        en: " This was the best volunteering experience of my life. I got to learn so much about myself, the world, and the people of the world.",
+        tr: "Bu, hayatımın en iyi gönüllülük deneyimiydi. Kendim, dünya ve dünya insanları hakkında çok şey öğrendim."
       },
-      name: "[ Volunteer name ]",
-      role: { en: "Raise Your Voice — Italy", tr: "Raise Your Voice — İtalya" }
+      name: "Bozhena Kushkevych",
+      role: { en: "Ukraine-Lyviv", tr: "Ukraine-Lyviv" }
     },
     {
       quote: {
-        en: "The best part was the cleanup crews: same kids, every Saturday, no one asked them to come back.",
-        tr: "En güzel yanı temizlik ekipleriydi: her cumartesi aynı çocuklar, kimse onlardan geri gelmelerini istemedi."
+        en: "This was the first time i went abroad.I have not seen many projects with so many opportunities. Thanks to this project, I had the opportunity to improve both myself and others.",
+        tr: "Bu, yurtdışına ilk çıkışım. Bu kadar çok fırsat sunan birçok proje görmedim. Bu proje sayesinde hem kendimi hem de başkalarını geliştirme fırsatı buldum."
       },
-      name: "[ Volunteer name ]",
-      role: { en: "Green Leaders — Indonesia", tr: "Green Leaders — Endonezya" }
+      name: "Rafifah Dien Triana",
+      role: { en: "Indonesia-Jakarta", tr: "Endonezya-Jakarta" }
     },
     {
       quote: {
-        en: "Our doors were open all summer. The municipality provided the venues; the volunteers brought the energy. It is a partnership we would repeat tomorrow.",
-        tr: "Kapılarımız bütün yaz açıktı. Mekânları belediye sağladı; enerjiyi gönüllüler getirdi. Yarın tekrarlayacağımız bir ortaklık."
+        en: "AIESEC and Tuzla Municipality was a great experience for us. Thanks to this project, we had the opportunity to improve both ourselves and others.",
+        tr: "AIESEC ve Tuzla belediye ile calismak bizim icin cok guzel bir deneyimdi. Bu proje sayesinde hem kendimizi hem de başkalarını geliştirme fırsatı bulduk."
       },
-      name: "[ Municipality coordinator ]",
-      role: { en: "Tuzla Belediyesi", tr: "Tuzla Belediyesi" }
+      name: "Samar Tlili",
+      role: { en: "Tunisia", tr: "Tunus" }
     },
     {
       quote: {
-        en: "My daughter now corrects my Turkish — and my assumptions. That is what six weeks did.",
-        tr: "Kızım artık hem Türkçemi hem de varsayımlarımı düzeltiyor. Altı haftanın yaptığı buydu."
+        en: "Bir ise yaradigimi hissettim.",
+        tr: "I felt that I was useful for a job."
       },
-      name: "[ Parent of a participant ]",
-      role: { en: "Tuzla", tr: "Tuzla" }
+      name: "Ferid Imanov",
+      role: { en: "Azerbaijan-Baku", tr: "Azerbaycan-Baki" }
     }
   ],
 
