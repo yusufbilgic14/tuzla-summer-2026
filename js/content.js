@@ -354,6 +354,11 @@ const DATA = {
   },
 
   gallery: [
+    { src: "assets/photos/community/mainprojectphoto.jpeg", project: "community", caption: { en: "The whole crew at Şelale Park", tr: "Şelale Park’ta tüm ekip" } },
+    { src: "assets/photos/community/groupphoto-web.jpg", project: "community", caption: { en: "The crew on a museum day", tr: "Müze gününde ekip" } },
+    { src: "assets/photos/community/littlegroupphoto.jpeg", project: "community", caption: { en: "Selfie o’clock — between sessions", tr: "Seans arası selfie molası" } },
+    { src: "assets/photos/community/com-01.jpg", project: "community", caption: { en: "Arrival week — onboarding in Istanbul", tr: "Geliş haftası — İstanbul'da oryantasyon" } },
+    { src: null, type: "video", project: "community", caption: { en: "Summer aftermovie — drop assets/videos/aftermovie.mp4 or paste an embed URL", tr: "Yaz filminiz — assets/videos/aftermovie.mp4 olarak ekleyin veya embed bağlantısı yapıştırın" } },
     { src: "assets/photos/raise-your-voice/ryv-01.jpg", project: "ryv", caption: { en: "Raise Your Voice — school workshop", tr: "Raise Your Voice — okul atölyesi" } },
     { src: "assets/photos/raise-your-voice/ryv-02.jpg", project: "ryv", caption: { en: "Raise Your Voice — storytelling lab", tr: "Raise Your Voice — hikâye anlatımı atölyesi" } },
     { src: "assets/photos/raise-your-voice/ryv-03.jpg", project: "ryv", caption: { en: "Raise Your Voice — closing exhibition", tr: "Raise Your Voice — kapanış sergisi" } },
@@ -362,12 +367,8 @@ const DATA = {
     { src: "assets/photos/green-leaders/gl-03.jpg", project: "gl", caption: { en: "Green Leaders — climate workshop", tr: "Green Leaders — iklim atölyesi" } },
     { src: "assets/photos/myself-my-world/mmw-01.jpg", project: "mmw", caption: { en: "Myself My World — Global Village", tr: "Myself My World — Global Village" } },
     { src: "assets/photos/myself-my-world/mmw-02.jpg", project: "mmw", caption: { en: "Myself My World — intercultural session", tr: "Myself My World — kültürlerarası seans" } },
-    { src: "assets/photos/myself-my-world/mmw-03.jpg", project: "mmw", caption: { en: "Myself My World — country corners", tr: "Myself My World — ülke köşeleri" } },
-    { src: "assets/photos/community/com-01.jpg", project: "community", caption: { en: "Arrival week — onboarding in Istanbul", tr: "Geliş haftası — İstanbul'da oryantasyon" } },
-    { src: "assets/photos/community/groupphoto-web.jpg", project: "community", caption: { en: "The crew on a museum day", tr: "Müze gününde ekip" } },
-    { src: "assets/photos/community/littlegroupphoto.jpeg", project: "community", caption: { en: "Selfie o’clock — between sessions", tr: "Seans arası selfie molası" } },
-    { src: "assets/photos/community/mainprojectphoto.jpeg", project: "community", caption: { en: "The whole crew at Şelale Park", tr: "Şelale Park’ta tüm ekip" } },
-    { src: null, type: "video", project: "community", caption: { en: "Summer aftermovie — drop assets/videos/aftermovie.mp4 or paste an embed URL", tr: "Yaz filminiz — assets/videos/aftermovie.mp4 olarak ekleyin veya embed bağlantısı yapıştırın" } }
+    { src: "assets/photos/myself-my-world/mmw-03.jpg", project: "mmw", caption: { en: "Myself My World — country corners", tr: "Myself My World — ülke köşeleri" } }
+  
   ],
 
   timeline: [

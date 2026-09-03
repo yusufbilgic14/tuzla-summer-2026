@@ -525,8 +525,8 @@
   function showLightbox() {
     var vis = visibleGallery();
     if (!vis.length) return;
-    if (state.lightboxIndex < 0) state.lightboxIndex = 0;
-    if (state.lightboxIndex >= vis.length) state.lightboxIndex = vis.length - 1;
+    var n = vis.length;
+    state.lightboxIndex = ((state.lightboxIndex % n) + n) % n;
     var item = vis[state.lightboxIndex];
     var media = $("#lb-media");
     if (item.type === "video" && item.src) {
@@ -649,7 +649,15 @@
     DATA.gallery.forEach(function (it, i) {
       if (it.src && it.src.indexOf("mainprojectphoto") !== -1) idx = i;
     });
-    function open() { if (idx >= 0) openLightbox(idx); }
+    function open() {
+      if (idx < 0) return;
+      var item = DATA.gallery[idx];
+      if (visibleGallery().indexOf(item) === -1) {
+        state.filter = "all";
+        renderGallery();
+      }
+      openLightbox(idx);
+    }
     hp.addEventListener("click", open);
     hp.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
