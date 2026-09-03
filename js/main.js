@@ -628,6 +628,20 @@
     });
   }
 
+  function bindHeroPhoto() {
+    var hp = $("#hero-photo");
+    if (!hp) return;
+    var idx = -1;
+    DATA.gallery.forEach(function (it, i) {
+      if (it.src && it.src.indexOf("mainprojectphoto") !== -1) idx = i;
+    });
+    function open() { if (idx >= 0) openLightbox(idx); }
+    hp.addEventListener("click", open);
+    hp.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  }
+
   /* ---------------- init ---------------- */
 
   function init() {
@@ -635,6 +649,7 @@
     bindLang();
     bindLightbox();
     bindNav();
+    bindHeroPhoto();
     $$(".reveal").forEach(function (n) { revealObserver.observe(n); });
   }
 

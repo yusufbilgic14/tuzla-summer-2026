@@ -34,6 +34,8 @@ const I18N = {
     "hero.sub": "The field report of the 2026 summer volunteer program in Tuzla — delivered on the ground by young people, for the community, across gender equality, climate action and global partnership.",
     "hero.cta1": "See the report ↓",
     "hero.marquee": "11+ countries came to Tuzla",
+    "hero.photoCap": "The whole crew at Şelale Park — one summer in Tuzla",
+    "hero.photoBadge": "50+ volunteers",
 
     "ov.figures": "By the numbers",
     "ov.story": "About the program",
@@ -128,6 +130,8 @@ const I18N = {
     "hero.sub": "Tuzla'daki 2026 yaz gönüllü programının saha raporu — toplumsal cinsiyet eşitliği, iklim eylemi ve küresel ortaklık alanlarında, gençler tarafından halk için hayata geçirildi.",
     "hero.cta1": "Raporu gör ↓",
     "hero.marquee": "11+ ülke Tuzla'ya geldi",
+    "hero.photoCap": "Şelale Park'ta tüm ekip — Tuzla'da bir yaz",
+    "hero.photoBadge": "50+ gönüllü",
 
     "ov.figures": "Rakamlarla",
     "ov.story": "Program hakkında",
@@ -360,9 +364,9 @@ const DATA = {
     { src: "assets/photos/myself-my-world/mmw-02.jpg", project: "mmw", caption: { en: "Myself My World — intercultural session", tr: "Myself My World — kültürlerarası seans" } },
     { src: "assets/photos/myself-my-world/mmw-03.jpg", project: "mmw", caption: { en: "Myself My World — country corners", tr: "Myself My World — ülke köşeleri" } },
     { src: "assets/photos/community/com-01.jpg", project: "community", caption: { en: "Arrival week — onboarding in Istanbul", tr: "Geliş haftası — İstanbul'da oryantasyon" } },
-    { src: "assets/photos/community/com-02.jpg", project: "community", caption: { en: "Volunteers and municipal teams", tr: "Gönüllüler ve belediye ekipleri" } },
-    { src: "assets/photos/community/com-03.jpg", project: "community", caption: { en: "Tuzla, between sessions", tr: "Tuzla, seanslar arasında" } },
-    { src: "assets/photos/community/com-04.jpg", project: "community", caption: { en: "The whole crew, one summer", tr: "Tüm ekip, tek bir yaz" } },
+    { src: "assets/photos/community/groupphoto-web.jpg", project: "community", caption: { en: "The crew on a museum day", tr: "Müze gününde ekip" } },
+    { src: "assets/photos/community/littlegroupphoto.jpeg", project: "community", caption: { en: "Selfie o’clock — between sessions", tr: "Seans arası selfie molası" } },
+    { src: "assets/photos/community/mainprojectphoto.jpeg", project: "community", caption: { en: "The whole crew at Şelale Park", tr: "Şelale Park’ta tüm ekip" } },
     { src: null, type: "video", project: "community", caption: { en: "Summer aftermovie — drop assets/videos/aftermovie.mp4 or paste an embed URL", tr: "Yaz filminiz — assets/videos/aftermovie.mp4 olarak ekleyin veya embed bağlantısı yapıştırın" } }
   ],
 

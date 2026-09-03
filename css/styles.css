@@ -273,7 +273,41 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 .hl-swash { display: none; }
 
 .hero-sub { max-width: 60ch; margin: 0 auto 36px; font-size: 18.5px; color: var(--ink-soft); }
-.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 58px; }
+.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 54px; }
+
+/* hero crew photo */
+.hero-photo { position: relative; max-width: 700px; margin: 0 auto 64px; }
+.hp-blob {
+  position: absolute; top: -26px; right: -40px; width: 58%; height: 46%;
+  background: var(--yellow); border-radius: 40px; transform: rotate(7deg);
+}
+.hp-blob2 {
+  position: absolute; bottom: 60px; left: -46px; width: 180px; height: 180px;
+  background: var(--teal-soft); border-radius: 50%;
+}
+.hp-frame {
+  position: relative; margin: 0; background: #fff; padding: 12px 12px 0;
+  border-radius: 28px; box-shadow: var(--sh-lg);
+  transform: rotate(-1.2deg); transition: transform .25s ease, box-shadow .25s ease;
+  cursor: zoom-in;
+}
+.hp-frame:hover { transform: rotate(0deg) translateY(-5px); box-shadow: 0 26px 60px rgba(10, 37, 64, 0.2); }
+.hp-frame img { width: 100%; display: block; border-radius: 18px; }
+.hp-badge {
+  position: absolute; top: 30px; right: 30px;
+  background: var(--blue); color: #fff; font-weight: 800; font-size: 14px;
+  padding: 10px 20px; border-radius: var(--r-full);
+  box-shadow: 0 10px 24px rgba(3, 126, 243, 0.4); transform: rotate(2.5deg);
+}
+.hp-cap {
+  display: flex; gap: 12px; align-items: center;
+  padding: 15px 10px 17px; font-weight: 700; font-size: 14.5px; color: var(--ink);
+}
+.hp-dots { display: inline-flex; gap: 4px; flex-shrink: 0; }
+.hp-dots i { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.hp-dots i:nth-child(1) { background: var(--sdg5); }
+.hp-dots i:nth-child(2) { background: var(--yellow); }
+.hp-dots i:nth-child(3) { background: var(--blue); }
 
 /* SDG stickers */
 .hero-stickers {
@@ -783,6 +817,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
   .hero { padding-top: 56px; }
   .hero-title { font-size: clamp(34px, 9.6vw, 44px); }
   .hero-sub { font-size: 16.5px; }
+  .hero-photo { max-width: 100%; }
+  .hp-frame { transform: none; padding: 8px 8px 0; border-radius: 20px; }
+  .hp-frame:hover { transform: translateY(-3px); }
+  .hp-badge { top: 18px; right: 18px; font-size: 12.5px; padding: 8px 14px; }
+  .hp-blob { right: -14px; top: -16px; }
+  .hp-blob2 { left: -20px; width: 120px; height: 120px; }
   .figures-grid { grid-template-columns: 1fr; }
   .story-grid { grid-template-columns: 1fr; }
   .gallery-grid { columns: 1; }
