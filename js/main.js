@@ -206,15 +206,15 @@
   }
 
   function projectSectionHTML(p, idx) {
-    var meta = DATA.sdgMeta[p.sdg];
-    var photos = DATA.gallery.filter(function (g) { return g.project === p.id; }).slice(0, 3);
-    state.photoFigs += photos.length;
-    var strip = photos.map(function (g) { return photoFigHTML(g, nextFigNo(), meta.color); }).join("");
-    var deco = p.id === "mmw"
+    var meta = DATA["sdgMeta"][p["sdg"]];
+    var stripItems = DATA["gallery"].filter(function (g) { return g["project"] === p["id"]; });
+    state.photoFigs += stripItems.length;
+    var strip = stripItems.map(function (g) { return photoFigHTML(g, nextFigNo(), meta["color"]); }).join("");
+    var deco = p["id"] === "mmw"
       ? '<div class="world-deco world-mmw" aria-hidden="true">' +
         worldSVG({ base: "rgba(10,37,64,0.10)", accentOpacity: 0.9 }) + "</div>"
       : "";
-    return '<article class="project" id="proj-' + p.id + '" style="--sdg:' + meta.color + '">' +
+    return '<article class="project" id="proj-' + p["id"] + '" style="--sdg:' + meta["color"] + '">' +
       deco +
       '<div class="container">' +
         '<div class="p-head reveal">' +
@@ -233,7 +233,16 @@
           '<div class="panel-card"><h3>' + t("projects.activities") + '</h3><ul class="act-list">' + projectActivitiesHTML(p) + "</ul></div>" +
           '<div class="panel-card"><h3>' + t("projects.outcomes") + '</h3><div class="out-rows">' + projectOutcomesHTML(p) + "</div></div>" +
         "</div>" +
-        '<div class="photo-strip reveal">' + strip + "</div>" +
+        '<div class="strip-wrap reveal">' +
+          '<div class="strip-toolbar">' +
+            '<span class="strip-count">' + stripItems.length + " " + t("strip.count") + "</span>" +
+            '<span class="strip-btns">' +
+              '<button class="strip-btn" type="button" data-dir="-1" aria-label="scroll left">[‹]</button>' +
+              '<button class="strip-btn" type="button" data-dir="1" aria-label="scroll right">[›]</button>' +
+            "</span>" +
+          "</div>" +
+          '<div class="photo-strip">' + strip + "</div>" +
+        "</div>" +
         '<div class="quote-card reveal">' +
           '<span class="q-glyph" aria-hidden="true">“</span>' +
           '<div class="q-name">' + p.quote.name + ' <span class="q-role">· ' + L(p.quote.role) + "</span></div>" +
@@ -242,12 +251,27 @@
       "</div></article>";
   }
 
+  function bindStrips(root) {
+    $$(".photo-strip", root).forEach(function (strip) {
+      var wrap = strip.closest(".strip-wrap");
+      if (!wrap) return;
+      $$(".strip-btn", wrap).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var card = strip.querySelector(".photo-fig");
+          var step = card ? card.getBoundingClientRect().width + 22 : 420;
+          strip.scrollBy({ left: step * parseInt(btn.dataset.dir, 10), behavior: "smooth" });
+        });
+      });
+    });
+  }
+
   function renderProjects() {
     var wrap = $("#projects-list");
     state.figCounter = DATA.figures.length;
     state.photoFigs = 0;
     wrap.innerHTML = DATA.projects.map(function (p, i) { return projectSectionHTML(p, i); }).join("");
     bindPhotoClicks(wrap);
+    bindStrips(wrap);
   }
 
   /* ---------------- SDG explorer ---------------- */

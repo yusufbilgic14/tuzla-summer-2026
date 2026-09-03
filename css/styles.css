@@ -467,8 +467,37 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 }
 .out-txt { font-size: 15px; color: var(--ink-soft); }
 
-.photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.strip-wrap { min-width: 0; }
+.strip-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; margin-bottom: 16px;
+}
+.strip-count {
+  font-size: 13px; font-weight: 800; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--sdg, var(--ink));
+}
+.strip-btns { display: flex; gap: 8px; }
+.strip-btn {
+  background: var(--white); border: 1.5px solid var(--line);
+  color: var(--ink); border-radius: var(--r-full);
+  font-family: var(--font); font-weight: 800; font-size: 15px;
+  padding: 7px 16px; cursor: pointer; transition: all .15s ease;
+}
+.strip-btn:hover { border-color: var(--sdg, var(--ink)); color: var(--sdg, var(--ink)); transform: translateY(-1px); }
+
+.photo-strip {
+  display: flex; gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 4px 20px;
+  scroll-behavior: smooth;
+}
+.photo-strip::-webkit-scrollbar { height: 8px; }
+.photo-strip::-webkit-scrollbar-track { background: transparent; }
+.photo-strip::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+.photo-strip::-webkit-scrollbar-thumb:hover { background: var(--hairline-strong, #b9c2cc); }
 .photo-fig {
+  flex: 0 0 auto; width: 400px; scroll-snap-align: start;
   background: var(--white); border-radius: var(--r-md); padding: 10px 10px 0;
   box-shadow: var(--sh-md); transition: transform .25s ease, box-shadow .25s ease;
 }
@@ -477,9 +506,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
 .photo-fig:hover { transform: rotate(0) translateY(-6px); box-shadow: var(--sh-lg); }
 .photo-fig .ph {
   border-radius: calc(var(--r-md) - 5px); overflow: hidden; position: relative;
-  background: var(--navy-soft); aspect-ratio: 4 / 3; cursor: zoom-in;
+  background: var(--navy-soft); height: 275px; cursor: zoom-in;
 }
-.photo-fig img { width: 100%; height: 100%; object-fit: cover; }
+.photo-fig .ph img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 42%;
+}
 .photo-fig figcaption {
   padding: 13px 8px 15px; font-size: 13.5px; font-weight: 600; color: var(--mute);
 }
@@ -828,7 +859,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-heigh
   .brand-tuzla { height: 36px; }
   .nav-brand { gap: 10px; }
   .project-cols { grid-template-columns: 1fr; }
-  .photo-strip { grid-template-columns: 1fr; }
+  .photo-fig { width: 300px; }
+  .photo-fig .ph { height: 215px; }
   .sdg-tiles { grid-template-columns: 1fr; }
 }
 
