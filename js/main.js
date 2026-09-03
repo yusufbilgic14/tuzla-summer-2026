@@ -75,7 +75,6 @@
         '<span class="s-sdg">SDG</span>' +
         '<span class="s-num">' + p.sdg + "</span>" +
         '<span class="s-name">' + L(meta.title) + "</span>" +
-        '<span class="s-code">$ ' + p.code + "</span>" +
         "</a>";
     }).join("");
   }
@@ -220,7 +219,7 @@
         '<div class="p-head reveal">' +
           '<div class="p-overline">' +
             '<span class="p-idx">' + String(idx + 1).padStart(2, "0") + '</span>' +
-            '<span class="p-code">$ ' + p.code + "</span>" +
+            '<span class="p-of">/ ' + String(DATA.projects.length).padStart(2, "0") + "</span>" +
           "</div>" +
           '<div class="p-titlerow">' +
             '<h3 class="project-name">' + L(p.name) + "</h3>" +
@@ -354,7 +353,7 @@
       'style="--sdg:' + meta.color + '">' +
       '<span class="t-num">SDG ' + sdg + "</span>" +
       '<span class="t-name">' + L(meta.title) + "</span>" +
-      '<span class="t-project">$ ' + (proj ? proj.code : "") + "</span>" +
+      '<span class="t-project">' + (proj ? L(proj.name) : "") + "</span>" +
       "</button>";
   }
 

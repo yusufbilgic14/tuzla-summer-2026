@@ -209,7 +209,7 @@ for col, key in zip(cards, ["1", "2", "3", "4"]):
 st.markdown(f"### {T('projects.label')}")
 for idx, p in enumerate(DATA["projects"]):
     meta = DATA["sdgMeta"][p["sdg"]]
-    st.markdown(f'{sdg_pill(p["sdg"])} &nbsp; **{idx + 1:02d} · ${p["code"]}**', unsafe_allow_html=True)
+    st.markdown(f'{sdg_pill(p["sdg"])} &nbsp; **{idx + 1:02d} / 03**', unsafe_allow_html=True)
     st.subheader(L(p["name"]))
     st.markdown(f'*{L(p["tagline"])}*')
     st.markdown(L(p["mission"]))
